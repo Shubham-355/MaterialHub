@@ -1,23 +1,34 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import '../App.css'
 import SubCard from "./SubCard";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import '../../filelocation.json'
+import fileData from '../../filelocation.json';
+
+import { set } from "mongoose";
 
 function Sem() {
     const navigate = useNavigate();
     const [selectedSemester, setSelectedSemester] = useState(null);
+    const getButtonStyle = (semester) => {
+        return {
+            backgroundColor: selectedSemester === semester ? '#ffa31a' : '#1b1b1b',
+            color : selectedSemester === semester ? 'black' : 'white'
+        };
+    };
+
     return (
         <div className="SemContainer">
             <div className="SemNavigatorContainer">
                 <div className="SemNavigator">
                     {/* <button onClick={() => setSelectedSemester(1)}>Sem 1</button>
                     <button onClick={() => setSelectedSemester(2)}>Sem 2</button> */}
-                    <button onClick={() => setSelectedSemester(3)}>Sem 3</button>
-                    <button onClick={() => setSelectedSemester(4)}>Sem 4</button>
-                    <button onClick={() => setSelectedSemester(5)}>Sem 5</button>
-                    <button onClick={() => setSelectedSemester(6)}>Sem 6</button>
-                    <button onClick={() => setSelectedSemester(7)}>Sem 7</button>
-                    <button onClick={() => setSelectedSemester(8)}>Sem 8</button>
+                    <button style={getButtonStyle(3)} onClick={() => setSelectedSemester(3)}>Sem 3</button>
+                    <button style={getButtonStyle(4)} onClick={() => setSelectedSemester(4)}>Sem 4</button>
+                    <button style={getButtonStyle(5)} onClick={() => setSelectedSemester(5)}>Sem 5</button>
+                    <button style={getButtonStyle(6)} onClick={() => setSelectedSemester(6)}>Sem 6</button>
+                    <button style={getButtonStyle(7)} onClick={() => setSelectedSemester(7)}>Sem 7</button>
+                    <button style={getButtonStyle(8)} onClick={() => setSelectedSemester(8)}>Sem 8</button>
                 </div>
             </div>
             {/* {selectedSemester === 1 && <Sem1 />}
@@ -106,12 +117,13 @@ function Sem4({navigate}) {
     return (
         <div className="SemContent">
             <div className="SubGridContainer">
-            <div className="SubGrid">
-                <div onClick={() => navigate("/pom")}><SubCard name="POM" /></div>
-                <div onClick={() => navigate("/psnm")}><SubCard name="PSNM" /></div>
-                <div onClick={() => navigate("/coa")}><SubCard name="COA" /></div>
-                <div onClick={() => navigate("/os")}><SubCard name="OS" /></div>
-                <div onClick={() => navigate("/oopj")}><SubCard name="OOPJ" /></div>
+                <div className="SubGrid">
+                    <div onClick={() => navigate("/pom")}><SubCard name="POM" /></div>
+                    <div onClick={() => navigate("/psnm")}><SubCard name="PSNM" /></div>
+                    <div onClick={() => navigate("/coa")}><SubCard name="COA" /></div>
+                    <div onClick={() => navigate("/os")}><SubCard name="OS" /></div>
+                    <div onClick={() => navigate("/oopj")}><SubCard name="OOPJ" />
+                </div>
             </div>
             <Routes>
                 <Route path="/pom/" element={<POM />} />
@@ -158,8 +170,32 @@ function Sem8({navigate}) {
 }
 
 function ITW() {
-    return (   
-        <button>ITW</button> 
+    const [selectedPractical, setSelectedPractical] = useState('');
+    const handleButtonClick = async (filePath) => {
+        const response = await fetch(filePath);
+        const code = await response.text();
+        setSelectedPractical(code);
+    };
+
+    const practicals = fileData?.ITW || {}; // Ensure practicals is an object
+    return (
+        <div className="SubDataContainer">
+            <div className="practicals">
+                {Object.keys(practicals).map((key, index) => (
+                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                        {key}
+                    </button>
+                ))}
+            </div>
+            <div className="practical-content">
+            
+                <pre>
+                    <code>
+                        <div dangerouslySetInnerHTML={{ __html: selectedPractical }} />
+                    </code>
+                </pre>
+            </div>
+        </div> 
     )
 }
 function POM() {
@@ -178,8 +214,31 @@ function OS() {
     )
 }
 function OOPJ() {
-    return (   
-        <button>OOPJ</button> 
+    const [selectedPractical, setSelectedPractical] = useState('');
+    const handleButtonClick = async (filePath) => {
+        const response = await fetch(filePath);
+        const code = await response.text();
+        setSelectedPractical(code);
+    };
+
+    const practicals = fileData?.OOPJ || {}; // Ensure practicals is an object
+    return (
+        <div className="SubDataContainer">
+            <div className="practicals">
+                {Object.keys(practicals).map((key, index) => (
+                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                        {key}
+                    </button>
+                ))}
+            </div>
+            <div className="practical-content">
+                <pre>
+                    <code>
+                        {selectedPractical}
+                    </code>
+                </pre>
+            </div>
+        </div> 
     )
 }
 function PSNM() {

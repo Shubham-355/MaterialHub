@@ -1,249 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
+1. Design web pages for your college containing a description of the courses, departments, faculties, library etc. Use Href and list tags.
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Material Hub</title>
-    <link rel="icon" href="/Material-hub/src/MH.png">
-    <link rel="stylesheet" href="/Material-hub/style.css" />
-    <script src="script.js"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
+Index.html
 
-<body>
-    <div class="overlay" id="overlay"></div>
-    <div class="custom-alert" id="customAlert">
-        <span class="close-btn" onclick="closeAlert()">&times;</span>
-        <p>Access from your country is not allowed.</p>
-    </div>
-    <div class="intro">
-        <div class="hello">
-            <a href="index.html">
-                <div class="logo">
-                    <div class="front-logo">Material</div>
-                    <div class="back-logo">Hub</div>
-                </div>
-            </a>
-            <div class="infotext">Feel free to use</div>
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;LDRP-ITR&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to LDRP-ITR&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 LDRP-ITR. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
 
-            <button id="navbarButton">
-                <span class="material-symbols-outlined infobtn">info</span>
-            </button>
-            <nav id="navbar">
-                <button id="closeButton">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
-                <ul class="navbarList">
-                    <li><a href="#">&copy; MaterialHub</a></li>
-                    <li><a href="#">All rights reserved.</a></li>
-                    <li>
-                        <a href="#">Unauthorized use and/or duplication of this material without
-                            express and written permission from this site’s author and/or
-                            owner is strictly prohibited. Excerpts and links may be used,
-                            provided that full and clear credit is given to Your Website
-                            Name with appropriate and specific direction to the original
-                            content.</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="/Material-hub/src/copyrightmeme.gif" alt="" /></a>
-                    </li>
-                </ul>
-            </nav>
-            <div id="overlay"></div>
-        </div>
-    </div>
-    <div class="codecontainer">
-        <div class="codecontent">
-            <div class="prtitle">1. Design web pages for your college containing a description of the courses,
-                departments, faculties, library
-                etc. Use Href and list tags.
-            </div>
-            <span class="filetitle">Index.html</span>
-            <div class="precode">
-                <pre>
-            <code class="language-html">
-                &lt;!DOCTYPE html&gt;
-                &lt;html&gt;
-                &lt;head&gt;
-                &lt;title&gt;LDRP-ITR&lt;/title&gt;
-                &lt;/head&gt;
-                &lt;body&gt;
-                &lt;header&gt;
-                    &lt;h1&gt;Welcome to LDRP-ITR&lt;/h1&gt;
-                &lt;/header&gt;
-                &lt;nav&gt;
-                    &lt;ul&gt;
-                    &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/nav&gt;
-                &lt;footer&gt;
-                    &lt;p&gt;&amp;copy; 2023 LDRP-ITR. All rights reserved.&lt;/p&gt;
-                &lt;/footer&gt;
-                &lt;/body&gt;
-                &lt;/html&gt;
-            </code>
-          </pre>
-        </div>
-        <span class="filetitle">library.html</span>
-        <div class="precode">
-            <pre>
-            <code class="language-html">
-                &lt;!DOCTYPE html&gt;
-                &lt;html&gt;
-                &lt;head&gt;
-                    &lt;title&gt;Library - LDRP-ITR&lt;/title&gt;
-                &lt;/head&gt;
-                &lt;body&gt;
-                    &lt;header&gt;
-                    &lt;h1&gt;Library&lt;/h1&gt;
-                    &lt;/header&gt;
-                    &lt;nav&gt;
-                    &lt;ul&gt;
-                        &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                    &lt;/nav&gt;
-                    &lt;section&gt;
-                    &lt;h2&gt;About the Library&lt;/h2&gt;
-                    &lt;p&gt;LDRP-ITR Library offers a wide range of resources... Our library stands as a beacon of intellectual exploration, housing a vast collection of books, journals, and digital resources that span across various engineering disciplines. Whether you&#39;re delving into classic engineering texts or exploring cutting-edge research, our library offers a quiet and inspiring space for both individual study and collaborative learning. With state-of-the-art facilities and dedicated librarians, we&#39;re committed to supporting your academic journey and fostering a culture of continuous learning and innovation. Explore, discover, and broaden your horizons at the heart of engineering knowledge&lt;/p&gt;
-                    &lt;/section&gt;
-                    &lt;footer&gt;
-                    &lt;p&gt;&amp;copy; 2023 LDRP-ITR. All rights reserved.&lt;/p&gt;
-                    &lt;/footer&gt;
-                &lt;/body&gt;
-                &lt;/html&gt;
-            </code>
-            </pre>
-        </div>
-        <span class="filetitle">faculties.html</span>
-        <div class="precode">
-            <pre>
-            <code class="language-html">
-                &lt;!DOCTYPE html&gt;
-                &lt;html&gt;
-                &lt;head&gt;
-                &lt;title&gt;Faculties - LDRP-ITR&lt;/title&gt;
-                &lt;/head&gt;
-                &lt;body&gt;
-                &lt;header&gt;
-                    &lt;h1&gt;Faculties&lt;/h1&gt;
-                &lt;/header&gt;
-                &lt;nav&gt;
-                    &lt;ul&gt;
-                    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/nav&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Faculties List&lt;/h2&gt;
-                    &lt;ul&gt;
-                    &lt;li&gt;Faculty of Computer Engineering&lt;/li&gt;
-                    &lt;li&gt;Faculty of Electrical Engineering&lt;/li&gt;
-                    &lt;li&gt;Faculty of Information Technology&lt;/li&gt;
-                    &lt;li&gt;Faculty of Civil Engineering&lt;/li&gt;
-                    &lt;li&gt;Faculty of Mechanical Engineering&lt;/li&gt;
-                    &lt;!-- Add more faculties here --&gt;
-                    &lt;/ul&gt;
-                &lt;/section&gt;
-                &lt;footer&gt;
-                    &lt;p&gt;&amp;copy; LDRP-ITR. All rights reserved.&lt;/p&gt;
-                &lt;/footer&gt;
-                &lt;/body&gt;
-                &lt;/html&gt;
-            </code>
-            </pre>
-        </div>
-        <span class="filetitle">departments.html</span>
-        <div class="precode">
-            <pre>
-            <code class="language-html">
-                &lt;!DOCTYPE html&gt;
-                &lt;html&gt;
-                &lt;head&gt;
-                &lt;title&gt;Departments - LDRP-ITR&lt;/title&gt;
-                &lt;/head&gt;
-                &lt;body&gt;
-                &lt;header&gt;
-                    &lt;h1&gt;Departments&lt;/h1&gt;
-                &lt;/header&gt;
-                &lt;nav&gt;
-                    &lt;ul&gt;
-                    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/nav&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Departments List&lt;/h2&gt;
-                    &lt;ul&gt;
-                    &lt;li&gt;Computer Engineering&lt;/li&gt;
-                    &lt;li&gt;Electrical Engineering&lt;/li&gt;
-                    &lt;li&gt;Information Technology&lt;/li&gt;
-                    &lt;li&gt;Civil Engineering&lt;/li&gt;
-                    &lt;li&gt;Mechanical Engineering&lt;/li&gt;
-                    &lt;!-- Add more departments here --&gt;
-                    &lt;/ul&gt;
-                &lt;/section&gt;
-                &lt;footer&gt;
-                    &lt;p&gt;&amp;copy; 2023 LDRP-ITR. All rights reserved.&lt;/p&gt;
-                &lt;/footer&gt;
-                &lt;/body&gt;
-                &lt;/html&gt;
-            </code>
-            </pre>
-        </div>
-        <span class="filetitle">courses.html</span>
-        <div class="precode">
-            <pre>
-                <code class="language-html">
-                    &lt;!DOCTYPE html&gt;
-                    &lt;html&gt;
-                    &lt;head&gt;
-                    &lt;title&gt;Courses - LDRP-ITR&lt;/title&gt;
-                    &lt;/head&gt;
-                    &lt;body&gt;
-                    &lt;header&gt;
-                        &lt;h1&gt;Courses Offered&lt;/h1&gt;
-                    &lt;/header&gt;
-                    &lt;nav&gt;
-                        &lt;ul&gt;
-                        &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
-                        &lt;/ul&gt;
-                    &lt;/nav&gt;
-                    &lt;section&gt;
-                        &lt;h2&gt;Course List&lt;/h2&gt;
-                        &lt;ul&gt;
-                        &lt;li&gt;Computer Engineering&lt;/li&gt;
-                        &lt;li&gt;Electrical Engineering&lt;/li&gt;
-                        &lt;li&gt;Information Technology&lt;/li&gt;
-                        &lt;li&gt;Civil Engineering&lt;/li&gt;
-                        &lt;li&gt;Mechanical Engineering&lt;/li&gt;
-                        &lt;!-- Add more courses here --&gt;
-                        &lt;/ul&gt;
-                    &lt;/section&gt;
-                    &lt;footer&gt;
-                        &lt;p&gt;&amp;copy; LDRP-ITR. All rights reserved.&lt;/p&gt;
-                    &lt;/footer&gt;
-                    &lt;/body&gt;
-                    &lt;/html&gt;
-                </code>
-            </pre>
-        </div>
-    </div>
-    <script src="/Material-hub/script.js"></script>
-  </body>
-</html>
+library.html
+
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Library - LDRP-ITR&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;header&gt;
+        &lt;h1&gt;Library&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/nav&gt;
+        &lt;section&gt;
+        &lt;h2&gt;About the Library&lt;/h2&gt;
+        &lt;p&gt;LDRP-ITR Library offers a wide range of resources... Our library stands as a beacon of intellectual exploration, housing a vast collection of books, journals, and digital resources that span across various engineering disciplines. Whether you&#39;re delving into classic engineering texts or exploring cutting-edge research, our library offers a quiet and inspiring space for both individual study and collaborative learning. With state-of-the-art facilities and dedicated librarians, we&#39;re committed to supporting your academic journey and fostering a culture of continuous learning and innovation. Explore, discover, and broaden your horizons at the heart of engineering knowledge&lt;/p&gt;
+        &lt;/section&gt;
+        &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 LDRP-ITR. All rights reserved.&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+faculties.html
+
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Faculties - LDRP-ITR&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Faculties&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Faculties List&lt;/h2&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Faculty of Computer Engineering&lt;/li&gt;
+        &lt;li&gt;Faculty of Electrical Engineering&lt;/li&gt;
+        &lt;li&gt;Faculty of Information Technology&lt;/li&gt;
+        &lt;li&gt;Faculty of Civil Engineering&lt;/li&gt;
+        &lt;li&gt;Faculty of Mechanical Engineering&lt;/li&gt;
+        &lt;!-- Add more faculties here --&gt;
+        &lt;/ul&gt;
+    &lt;/section&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; LDRP-ITR. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+departments.html
+
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Departments - LDRP-ITR&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Departments&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;courses.html&quot;&gt;Courses&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Departments List&lt;/h2&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Computer Engineering&lt;/li&gt;
+        &lt;li&gt;Electrical Engineering&lt;/li&gt;
+        &lt;li&gt;Information Technology&lt;/li&gt;
+        &lt;li&gt;Civil Engineering&lt;/li&gt;
+        &lt;li&gt;Mechanical Engineering&lt;/li&gt;
+        &lt;!-- Add more departments here --&gt;
+        &lt;/ul&gt;
+    &lt;/section&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 LDRP-ITR. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+courses.html
+
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+        &lt;title&gt;Courses - LDRP-ITR&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;header&gt;
+            &lt;h1&gt;Courses Offered&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;departments.html&quot;&gt;Departments&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;faculties.html&quot;&gt;Faculties&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;library.html&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Course List&lt;/h2&gt;
+            &lt;ul&gt;
+            &lt;li&gt;Computer Engineering&lt;/li&gt;
+            &lt;li&gt;Electrical Engineering&lt;/li&gt;
+            &lt;li&gt;Information Technology&lt;/li&gt;
+            &lt;li&gt;Civil Engineering&lt;/li&gt;
+            &lt;li&gt;Mechanical Engineering&lt;/li&gt;
+            &lt;!-- Add more courses here --&gt;
+            &lt;/ul&gt;
+        &lt;/section&gt;
+        &lt;footer&gt;
+            &lt;p&gt;&amp;copy; LDRP-ITR. All rights reserved.&lt;/p&gt;
+        &lt;/footer&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;

@@ -71,42 +71,79 @@ body{
   border: none;
 }
 
-.sem1st1{
-  color: white;
-}
-
-.SubCard{
-  
-}
-
 .SubGridContainer{
-  
+  padding: 10px;
 }
 
 .SubGrid{
   display: flex;
-  margin: 10px;
   /* margin-left: -25px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 10px;
   overflow-x: auto;
   padding: 30px; */
+  
 }
 
-.SubGrid div{margin: auto;
+.SubGrid div{
+  margin: auto;
   color: white;
-  background-color: #1b1b1b;
-  padding: 5px;
+  padding: 6px;
   border-radius: 3px;
   cursor: pointer;
   border: none;
+  background-color: #1b1b1b;
   /* background-color: #1b1b1b;
   color: white;
   text-align: center;
   padding: 10px; */
 }
 
+.SubGrid div.active {
+  background-color: #ffa31a;
+  color: black;
+}
 .Subject{
+  margin: 10px;
+}
+
+code, pre{
+  width: 100%;
   color: white;
+  overflow-y: hidden;
+}
+
+.practicals{
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+::-webkit-scrollbar{
+  height: 5px;
+  width: 5px;
+  background-color: #1b1b1b;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1b1b1b;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffa31a;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffa31a;
+}
+
+.practicals button{
+  background-color: #1b1b1b;
+  color: white;
+  border: none;
+  margin: 10px;
+  padding: 10px;
 }
