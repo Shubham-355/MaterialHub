@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Hub</title>
+    <link rel="icon" href="/Material-hub/src/MH.png">
+    <link rel="stylesheet" href="/Material-hub/style.css" />
+    <script src="script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <div class="custom-alert" id="customAlert">
+      <span class="close-btn" onclick="closeAlert()">&times;</span>
+      <p>Access from your country is not allowed.</p>
+    </div>
+    <div class="intro">
+      <div class="hello">
+        <a href="index.html">
+          <div class="logo">
+            <div class="front-logo">Material</div>
+            <div class="back-logo">Hub</div>
+          </div>
+        </a>
+        <div class="infotext">Feel free to use</div>
+
+        <button id="navbarButton">
+          <span class="material-symbols-outlined infobtn">info</span>
+        </button>
+        <nav id="navbar">
+          <button id="closeButton">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+          <ul class="navbarList">
+            <li><a href="#">&copy; MaterialHub</a></li>
+            <li><a href="#">All rights reserved.</a></li>
+            <li>
+              <a href="#"
+                >Unauthorized use and/or duplication of this material without
+                express and written permission from this site’s author and/or
+                owner is strictly prohibited. Excerpts and links may be used,
+                provided that full and clear credit is given to Your Website
+                Name with appropriate and specific direction to the original
+                content.</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img src="/Material-hub/src/copyrightmeme.gif" alt=""
+              /></a>
+            </li>
+          </ul>
+        </nav>
+        <div id="overlay"></div>
+      </div>
+    </div>
+    <div class="codecontainer">
+      <div class="codecontent">
+        <div class="prtitle">13. Create HTML Page with JavaScript which takes Integer number as input and tells whether the number is
+          ODD or EVEN
+        </div>
+        <span class="filetitle">Index.html</span>
+        <div class="precode">
+          <pre>
+            <code class="language-html">
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+              &lt;head&gt;
+                  &lt;title&gt;Odd or Even Checker&lt;/title&gt;
+              &lt;/head&gt;
+              &lt;body&gt;
+                  &lt;h1&gt;Odd or Even Checker&lt;/h1&gt;
+                  &lt;label for=&quot;numberInput&quot;&gt;Enter an integer:&lt;/label&gt;
+                  &lt;input type=&quot;number&quot; id=&quot;numberInput&quot;&gt;
+                  &lt;button onclick=&quot;checkOddOrEven()&quot;&gt;Check&lt;/button&gt;
+                  &lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+
+                  &lt;script&gt;
+                      function checkOddOrEven() {
+                          var number = document.getElementById(&quot;numberInput&quot;).value;
+                          if (number !== &quot;&quot; &amp;&amp; !isNaN(number) &amp;&amp; Number.isInteger(Number(number))) {
+
+                              if (number % 2 === 0) {
+                                  document.getElementById(&quot;result&quot;).innerHTML = number + &quot; is EVEN.&quot;;
+                              } else {
+                                  document.getElementById(&quot;result&quot;).innerHTML = number + &quot; is ODD.&quot;;
+                              }
+                          } else {
+                              document.getElementById(&quot;result&quot;).innerHTML = &quot;Please enter a valid integer.&quot;;
+                          }
+                      }
+                  &lt;/script&gt;
+              &lt;/body&gt;
+              &lt;style&gt;
+                  body {
+                      font-family: Arial, sans-serif;
+                      background-color: #f4f4f4;
+                      text-align: center;
+                      margin: 0;
+                      padding: 0;
+                  }
+
+                  h1 {
+                      color: #333;
+                  }
+
+                  label {
+                      font-size: 18px;
+                  }
+
+                  input[type=&quot;number&quot;] {
+                      width: 200px;
+                      height: 40px;
+                      font-size: 18px;
+                      text-align: center;
+                      margin: 10px;
+                      border: 2px solid #ccc;
+                      border-radius: 5px;
+                  }
+
+                  button {
+                      width: 120px;
+                      height: 40px;
+                      font-size: 18px;
+                      cursor: pointer;
+                      background-color: #007bff;
+                      color: #fff;
+                      border: none;
+                      border-radius: 5px;
+                  }
+
+                  button:hover {
+                      background-color: #0056b3;
+                  }
+
+                  #result {
+                      font-size: 24px;
+                      margin: 20px;
+                  }
+              &lt;/style&gt;
+
+              &lt;/html&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+    <script src="/Material-hub/script.js"></script>
+  </body>
+</html>

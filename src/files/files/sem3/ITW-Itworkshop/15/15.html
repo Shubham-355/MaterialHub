@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Hub</title>
+    <link rel="icon" href="/Material-hub/src/MH.png">
+    <link rel="stylesheet" href="/Material-hub/style.css" />
+    <script src="script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <div class="custom-alert" id="customAlert">
+      <span class="close-btn" onclick="closeAlert()">&times;</span>
+      <p>Access from your country is not allowed.</p>
+    </div>
+    <div class="intro">
+      <div class="hello">
+        <a href="index.html">
+          <div class="logo">
+            <div class="front-logo">Material</div>
+            <div class="back-logo">Hub</div>
+          </div>
+        </a>
+        <div class="infotext">Feel free to use</div>
+
+        <button id="navbarButton">
+          <span class="material-symbols-outlined infobtn">info</span>
+        </button>
+        <nav id="navbar">
+          <button id="closeButton">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+          <ul class="navbarList">
+            <li><a href="#">&copy; MaterialHub</a></li>
+            <li><a href="#">All rights reserved.</a></li>
+            <li>
+              <a href="#"
+                >Unauthorized use and/or duplication of this material without
+                express and written permission from this site’s author and/or
+                owner is strictly prohibited. Excerpts and links may be used,
+                provided that full and clear credit is given to Your Website
+                Name with appropriate and specific direction to the original
+                content.</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img src="/Material-hub/src/copyrightmeme.gif" alt=""
+              /></a>
+            </li>
+          </ul>
+        </nav>
+        <div id="overlay"></div>
+      </div>
+    </div>
+    <div class="codecontainer">
+      <div class="codecontent">
+        <div class="prtitle">15. Write a JavaScript code to rotate images after a specific time interval
+        </div>
+        <span class="filetitle">Index.html</span>
+        <div class="precode">
+          <pre>
+            <code class="language-html">
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+              &lt;head&gt;
+                  &lt;title&gt;Image Rotation&lt;/title&gt;
+                  &lt;style&gt;
+                      img {
+                          max-width: 400px;
+                      }
+                  &lt;/style&gt;
+              &lt;/head&gt;
+              &lt;body&gt;
+                  &lt;h1&gt;Image Rotation&lt;/h1&gt;
+                  &lt;img id=&quot;image&quot; src=&quot;image1.png&quot; alt=&quot;Image 1&quot;&gt;
+                  &lt;img id=&quot;dogecoin&quot; src=&quot;dogecoin.png&quot; alt=&quot;Image 2&quot;&gt;
+
+                  &lt;script&gt;
+                    var myImage = document.getElementById(&quot;image&quot;);
+                    var ImageArray = [&quot;image1.png&quot;, &quot;image3.png&quot;, &quot;image4.png&quot;, &quot;image5.png&quot;];
+                    var ImageIndex = 0;
+                    function changeImage() {
+                        myImage.setAttribute(&quot;src&quot;, ImageArray[ImageIndex]);
+                        ImageIndex = (ImageIndex + 1) % ImageArray.length;
+                    }
+                    setTimeout(changeImage, 1000);
+                    setInterval(changeImage, 2000);
+
+                    let rotateImage = () =&gt; {
+                        let img = document.getElementById(&quot;dogecoin&quot;);
+                        img.style.transform = &quot;rotate(180deg)&quot;;
+                    }
+                  &lt;/script&gt;
+              &lt;/body&gt;
+              &lt;/html&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+    <script src="/Material-hub/script.js"></script>
+  </body>
+</html>

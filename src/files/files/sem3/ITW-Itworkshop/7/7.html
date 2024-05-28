@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Hub</title>
+    <link rel="icon" href="/Material-hub/src/MH.png">
+    <link rel="stylesheet" href="/Material-hub/style.css" />
+    <script src="script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <div class="custom-alert" id="customAlert">
+      <span class="close-btn" onclick="closeAlert()">&times;</span>
+      <p>Access from your country is not allowed.</p>
+    </div>
+    <div class="intro">
+      <div class="hello">
+        <a href="index.html">
+          <div class="logo">
+            <div class="front-logo">Material</div>
+            <div class="back-logo">Hub</div>
+          </div>
+        </a>
+        <div class="infotext">Feel free to use</div>
+
+        <button id="navbarButton">
+          <span class="material-symbols-outlined infobtn">info</span>
+        </button>
+        <nav id="navbar">
+          <button id="closeButton">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+          <ul class="navbarList">
+            <li><a href="#">&copy; MaterialHub</a></li>
+            <li><a href="#">All rights reserved.</a></li>
+            <li>
+              <a href="#"
+                >Unauthorized use and/or duplication of this material without
+                express and written permission from this site’s author and/or
+                owner is strictly prohibited. Excerpts and links may be used,
+                provided that full and clear credit is given to Your Website
+                Name with appropriate and specific direction to the original
+                content.</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img src="/Material-hub/src/copyrightmeme.gif" alt=""
+              /></a>
+            </li>
+          </ul>
+        </nav>
+        <div id="overlay"></div>
+      </div>
+    </div>
+    <div class="codecontainer">
+      <div class="codecontent">
+        <div class="prtitle">7. Use Inline CSS to format your resume that you created.
+        </div>
+        <span class="filetitle">resume.html</span>
+        <div class="precode">
+          <pre>
+            <code class="language-html">
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+              &lt;head&gt;
+                  &lt;title&gt;My Resume&lt;/title&gt;
+              &lt;/head&gt;
+              &lt;body style=&quot;font-family: Arial, sans-serif; background-color: #f7f7f7; margin: 0; padding: 20px;&quot;&gt;
+                  &lt;div style=&quot;text-align: center; margin-bottom: 20px;&quot;&gt;
+                      &lt;h1 style=&quot;color: #333; font-size: 28px; margin-bottom: 5px;&quot;&gt;Shubham Suthar&lt;/h1&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;Full-stack Developer&lt;/p&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;&lt;a style=&quot;color: #007bff; text-decoration: none;&quot; href=&quot;mailto:exe@example.com&quot;&gt;exe@example.com&lt;/a&gt; | &lt;a style=&quot;color: #007bff; text-decoration: none;&quot; href=&quot;tel:+1234567890&quot;&gt;123-456-7890&lt;/a&gt;&lt;/p&gt;
+                  &lt;/div&gt;
+                  
+                  &lt;div style=&quot;margin-bottom: 40px; border-left: 4px solid #007bff; padding-left: 15px;&quot;&gt;
+                      &lt;h2 style=&quot;color: #555; font-size: 24px; margin-bottom: 10px;&quot;&gt;Summary&lt;/h2&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;Passionate front-end developer with 5 years of experience in creating user-friendly and responsive web applications.&lt;/p&gt;
+                  &lt;/div&gt;
+                  
+                  &lt;div style=&quot;margin-bottom: 40px; border-left: 4px solid #007bff; padding-left: 15px;&quot;&gt;
+                      &lt;h2 style=&quot;color: #555; font-size: 24px; margin-bottom: 10px;&quot;&gt;Skills&lt;/h2&gt;
+                      &lt;ul style=&quot;list-style: disc; margin-left: 10px; font-size: 16px; line-height: 1.5;&quot;&gt;
+                          &lt;li&gt;HTML5, CSS3, JavaScript&lt;/li&gt;
+                          &lt;li&gt;React.js, Vue.js&lt;/li&gt;
+                          &lt;li&gt;Responsive Web Design&lt;/li&gt;
+                          &lt;li&gt;Version Control (Git)&lt;/li&gt;
+                      &lt;/ul&gt;
+                  &lt;/div&gt;
+                  
+                  &lt;div style=&quot;margin-bottom: 40px; border-left: 4px solid #007bff; padding-left: 15px;&quot;&gt;
+                      &lt;h2 style=&quot;color: #555; font-size: 24px; margin-bottom: 10px;&quot;&gt;Experience&lt;/h2&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;&lt;strong&gt;Web Developer&lt;/strong&gt;, XYZ Tech Solutions, 2026 - Present&lt;/p&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;Developed and maintained client websites, collaborated with design team to implement responsive layouts.&lt;/p&gt;
+                      
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;&lt;strong&gt;Front-End Developer&lt;/strong&gt;, ABC Web Agency, 2027 - 2029&lt;/p&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;Worked on various projects, optimized website performance, and created interactive UI components.&lt;/p&gt;
+                  &lt;/div&gt;
+                  
+                  &lt;div style=&quot;margin-bottom: 40px; border-left: 4px solid #007bff; padding-left: 15px;&quot;&gt;
+                      &lt;h2 style=&quot;color: #555; font-size: 24px; margin-bottom: 10px;&quot;&gt;Education&lt;/h2&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;&lt;strong&gt;Bachelor of Engineering in Computer Engineering&lt;/strong&gt;, KSV University, 2026&lt;/p&gt;
+                  &lt;/div&gt;
+                  
+                  &lt;div style=&quot;margin-bottom: 40px; border-left: 4px solid #007bff; padding-left: 15px;&quot;&gt;
+                      &lt;h2 style=&quot;color: #555; font-size: 24px; margin-bottom: 10px;&quot;&gt;Portfolio&lt;/h2&gt;
+                      &lt;p style=&quot;margin: 5px 0; font-size: 16px; line-height: 1.5;&quot;&gt;Check out my portfolio at &lt;a style=&quot;color: #007bff; text-decoration: none;&quot; href=&quot;https://www.example.com/portfolio&quot;&gt;www.example.com/portfolio&lt;/a&gt;&lt;/p&gt;
+                  &lt;/div&gt;
+              &lt;/body&gt;
+              &lt;/html&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+    <script src="/Material-hub/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Hub</title>
+    <link rel="icon" href="/Material-hub/src/MH.png">
+    <link rel="stylesheet" href="/Material-hub/style.css" />
+    <script src="script.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="custom-alert" id="customAlert">
+        <span class="close-btn" onclick="closeAlert()">&times;</span>
+        <p>Access from your country is not allowed.</p>
+    </div>
+    <div class="intro">
+        <div class="hello">
+            <a href="/Material-hub/index.html">
+                <div class="logo">
+                    <div class="front-logo">Material</div>
+                    <div class="back-logo">Hub</div>
+                </div>
+            </a>
+            <div class="infotext">Feel free to use</div>
+
+            <button id="navbarButton">
+                <span class="material-symbols-outlined infobtn">info</span>
+            </button>
+            <nav id="navbar">
+                <button id="closeButton">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <ul class="navbarList">
+                    <li><a href="#">&copy; MaterialHub</a></li>
+                    <li><a href="#">All rights reserved.</a></li>
+                    <li>
+                        <a href="#">Unauthorized use and/or duplication of this material without
+                            express and written permission from this site’s author and/or
+                            owner is strictly prohibited. Excerpts and links may be used,
+                            provided that full and clear credit is given to Your Website
+                            Name with appropriate and specific direction to the original
+                            content.</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/Material-hub/src/copyrightmeme.gif" alt="" /></a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="overlay"></div>
+        </div>
+    </div>
+    <div class="codecontainer">
+        <div class="codecontent">
+            <div class="prtitle">41 Program that demonsarate treeset
+            </div>
+            <span class="filetitle">Code</span>
+            <div class="precode">
+                <pre>
+            <code class="language-java">
+    import java.util.TreeSet;
+
+    public class p41 {
+        public static void main(String[] args) {
+            // Create a TreeSet to store integers
+            TreeSet<Integer> numbers = new TreeSet<>();
+    
+            // Adding elements to the TreeSet
+            numbers.add(10);
+            numbers.add(5);
+            numbers.add(20);
+            numbers.add(15);
+    
+            // Displaying the TreeSet (in ascending order)
+            System.out.println("TreeSet: " + numbers);
+    
+            // Adding duplicate elements
+            numbers.add(10);
+            numbers.add(5);
+    
+            // Displaying the modified TreeSet (duplicates are not allowed)
+            System.out.println("TreeSet after adding duplicates: " + numbers);
+    
+            // Removing an element from the TreeSet
+            numbers.remove(15);
+    
+            // Displaying the modified TreeSet
+            System.out.println("TreeSet after removing element 15: " + numbers);
+    
+            // Checking if the TreeSet contains a specific element
+            int searchNumber = 20;
+            if (numbers.contains(searchNumber)) {
+                System.out.println("TreeSet contains " + searchNumber);
+            } else {
+                System.out.println("TreeSet does not contain " + searchNumber);
+            }
+    
+            // Getting the size of the TreeSet
+            System.out.println("Size of TreeSet: " + numbers.size());
+    
+            // Clearing the TreeSet
+            numbers.clear();
+    
+            // Checking if the TreeSet is empty
+            if (numbers.isEmpty()) {
+                System.out.println("TreeSet is empty");
+            } else {
+                System.out.println("TreeSet is not empty");
+            }
+        }
+    }
+            </code>
+          </pre>
+        </div>
+        <span class="filetitle">Output</span>
+            <div class="precode">
+                <pre>
+            <code>
+    TreeSet: [5, 10, 15, 20]
+    TreeSet after adding duplicates: [5, 10, 15, 20]
+    TreeSet after removing element 15: [5, 10, 20]
+    TreeSet contains 20
+    Size of TreeSet: 3
+    TreeSet is empty
+            </code>
+          </pre>
+        </div>
+    </div>
+    <script src="/Material-hub/script.js"></script>
+  </body>
+</html>

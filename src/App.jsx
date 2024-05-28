@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import MaterialHub from './components/MaterialHub'
+import Sem from './components/Sem'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<MaterialHub />} />
-        <Route path='/' element={<MaterialHub />} />
-
-      </Routes>
-      
-    </BrowserRouter>
+      <BrowserRouter>
+        <MaterialHub />
+        <Sem />
+      </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path='/' element={<MaterialHub />} />
+    //     {/* <Route path='/' element={<Sem />} /> */}
+    //   </Routes>
+    // </BrowserRouter>
   )
 }
 
