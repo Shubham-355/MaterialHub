@@ -1,0 +1,33 @@
+body{
+ margin: 0;
+ padding: 0;
+ background-color: black;
+}
+
+.MaterialHubOP{
+  width: 180px;
+  height: 37px;
+  font-family: Arial;
+  font-weight: bold;
+  background-color: #1b1b1b;
+  display: flex;
+  border-radius: 3px;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+}
+
+.frontMaterialHubOP{
+  color: white;
+  flex: 1;
+  font-size: 30px;
+}
+
+.backMaterialHubOP{
+  background-color: #ffa31a;
+  flex: 1;
+  font-size: 30px;
+  border-radius: 4px;
+  margin: 1px;
+  color: black;
+}
