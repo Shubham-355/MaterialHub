@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import '../App.css'
-import SubCard from "./SubCard";
 import React, {useState, useEffect} from "react";
 import '../../filelocation.json'
 import fileData from '../../filelocation.json';
 
-import { set } from "mongoose";
 
 function Sem() {
     const navigate = useNavigate();
