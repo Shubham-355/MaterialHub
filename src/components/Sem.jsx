@@ -101,28 +101,44 @@ function Sem() {
 // }
 
 function Sem3({navigate}) {
+    const [selectedSub, setSelectedSub] = useState(null);
     return (
         <div className="SubGridContainer">
-            <div className="SubGrid">
-                <div onClick={() => navigate("/itw")}><SubCard name="ITW" /></div>
+            <div className="SubGridContainer">
+                <div className="SubGrid">
+                    <button onClick={() => setSelectedSub(14)}>ITW</button>
+                </div>
             </div>
-            <Routes>
-                <Route path="/itw/" element={<ITW />} />
-            </Routes>
+            {selectedSub === 14 && <ITW navigate={navigate} />}
         </div>
     )
 }
 
 function Sem4({navigate}) {
+    const [selectedSub, setSelectedSub] = useState(null);
     return (
         <div className="SemContent">
             <div className="SubGridContainer">
+                <div className="SubGrid">
+                    <button onClick={() => setSelectedSub(10)}>POM</button>
+                    <button onClick={() => setSelectedSub(12)}>PSNM</button>
+                    <button onClick={() => setSelectedSub(9)}>COA</button>
+                    <button onClick={() => setSelectedSub(13)}>OS</button>
+                    <button onClick={() => setSelectedSub(11)}>OOPJ</button>
+                </div>
+            </div>
+            {selectedSub === 10 && <POM navigate={navigate} />}
+            {selectedSub === 12 && <PSNM navigate={navigate} />}
+            {selectedSub === 9 && <COA navigate={navigate} />}
+            {selectedSub === 13 && <OS navigate={navigate} />}
+            {selectedSub === 11 && <OOPJ navigate={navigate} />}
+            {/* <div className="SubGridContainer">
                 <div className="SubGrid">
                     <div onClick={() => navigate("/pom")}><SubCard name="POM" /></div>
                     <div onClick={() => navigate("/psnm")}><SubCard name="PSNM" /></div>
                     <div onClick={() => navigate("/coa")}><SubCard name="COA" /></div>
                     <div onClick={() => navigate("/os")}><SubCard name="OS" /></div>
-                    <div onClick={() => navigate("/oopj")}><SubCard name="OOPJ" />
+                    <div onClick={() => navigate("/oopj")}><SubCard name="OOPJ" /></div>
                 </div>
             </div>
             <Routes>
@@ -131,8 +147,7 @@ function Sem4({navigate}) {
                 <Route path="/coa/" element={<COA />} />
                 <Route path="/os/" element={<OS />} />
                 <Route path="/oopj/" element={<OOPJ />} />
-            </Routes>
-        </div>
+            </Routes> */}
         </div>
     )
 }
@@ -243,7 +258,7 @@ function OOPJ() {
 }
 function PSNM() {
     return (   
-        <button>subject6</button> 
+        <button>PSNM</button> 
     )
 }
 
