@@ -110,8 +110,8 @@ body{
 
 code, pre{
   width: 100%;
-  color: white;
   overflow-y: hidden;
+  background-color: black !important;
 }
 
 .practicals{

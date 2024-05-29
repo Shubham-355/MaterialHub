@@ -1,9 +1,7 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import '../App.css'
 import React, {useState, useEffect} from "react";
-import '../../filelocation.json'
-import fileData from '../../filelocation.json';
-
+import fileData from '../../filedata';
 
 function Sem() {
     const navigate = useNavigate();
@@ -118,16 +116,16 @@ function Sem4({navigate}) {
         <div className="SemContent">
             <div className="SubGridContainer">
                 <div className="SubGrid">
-                    <button onClick={() => setSelectedSub(10)}>POM</button>
+                    {/* <button onClick={() => setSelectedSub(10)}>POM</button> */}
                     <button onClick={() => setSelectedSub(12)}>PSNM</button>
-                    <button onClick={() => setSelectedSub(9)}>COA</button>
+                    {/* <button onClick={() => setSelectedSub(9)}>COA</button> */}
                     <button onClick={() => setSelectedSub(13)}>OS</button>
                     <button onClick={() => setSelectedSub(11)}>OOPJ</button>
                 </div>
             </div>
-            {selectedSub === 10 && <POM navigate={navigate} />}
+            {/* {selectedSub === 10 && <POM navigate={navigate} />} */}
             {selectedSub === 12 && <PSNM navigate={navigate} />}
-            {selectedSub === 9 && <COA navigate={navigate} />}
+            {/* {selectedSub === 9 && <COA navigate={navigate} />} */}
             {selectedSub === 13 && <OS navigate={navigate} />}
             {selectedSub === 11 && <OOPJ navigate={navigate} />}
             {/* <div className="SubGridContainer">
@@ -153,7 +151,7 @@ function Sem4({navigate}) {
 function Sem5({navigate}) {
     return (
         <div className="SemContent">
-            Sem 5 content
+            
         </div>
     )
 }
@@ -161,7 +159,7 @@ function Sem5({navigate}) {
 function Sem6({navigate}) {
     return (
         <div className="SemContent">
-            Sem 6 content
+            
         </div>
     )
 }
@@ -169,7 +167,7 @@ function Sem6({navigate}) {
 function Sem7({navigate}) {
     return (
         <div className="SemContent">
-            Sem 7 content
+            
         </div>
     )
 }
@@ -177,20 +175,19 @@ function Sem7({navigate}) {
 function Sem8({navigate}) {
     return (
         <div className="SemContent">
-            Sem 8 content
+            
         </div>
     )
 }
 
 function ITW() {
     const [selectedPractical, setSelectedPractical] = useState('');
-    const handleButtonClick = async (filePath) => {
-        const response = await fetch(filePath);
-        const code = await response.text();
+    const handleButtonClick = (code) => {
         setSelectedPractical(code);
     };
 
     const practicals = fileData?.ITW || {}; // Ensure practicals is an object
+
     return (
         <div className="SubDataContainer">
             <div className="practicals">
@@ -201,15 +198,14 @@ function ITW() {
                 ))}
             </div>
             <div className="practical-content">
-            
-                <pre>
-                    <code>
-                        <div dangerouslySetInnerHTML={{ __html: selectedPractical }} />
+                <pre className="language-html language-css language-javascript">
+                    <code className="language-html language-css language-javascript">
+                        {selectedPractical}
                     </code>
                 </pre>
             </div>
-        </div> 
-    )
+        </div>
+    );
 }
 function POM() {
     return (   
@@ -223,18 +219,32 @@ function COA() {
 }
 function OS() {
     return (   
-        <button>OS</button> 
+        <div className="SubDataContainer">
+            <div className="practicals">
+                {Object.keys(practicals).map((key, index) => (
+                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                        {key}
+                    </button>
+                ))}
+            </div>
+            <div className="practical-content">
+                <pre className="language-java">
+                    <code className="language-java">
+                        {selectedPractical}
+                    </code>
+                </pre>
+            </div>
+        </div>
     )
 }
 function OOPJ() {
     const [selectedPractical, setSelectedPractical] = useState('');
-    const handleButtonClick = async (filePath) => {
-        const response = await fetch(filePath);
-        const code = await response.text();
+    const handleButtonClick = (code) => {
         setSelectedPractical(code);
     };
 
     const practicals = fileData?.OOPJ || {}; // Ensure practicals is an object
+
     return (
         <div className="SubDataContainer">
             <div className="practicals">
@@ -245,14 +255,14 @@ function OOPJ() {
                 ))}
             </div>
             <div className="practical-content">
-                <pre>
-                    <code>
+                <pre className="language-java">
+                    <code className="language-java">
                         {selectedPractical}
                     </code>
                 </pre>
             </div>
-        </div> 
-    )
+        </div>
+    );
 }
 function PSNM() {
     return (   
