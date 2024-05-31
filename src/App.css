@@ -181,7 +181,7 @@ code, pre{
 .footer-container{
   position: relative;
   width: 100%;
-  min-height: 65vh;
+  min-height: 73vh;
   bottom: 0;
 }
 
@@ -238,9 +238,9 @@ code, pre{
   background-color: #ffa31a;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
-  .SemNavigator  {
+  .SemNavigator {
     margin: 1px;
     overflow: scroll;
     overflow-y: hidden;
@@ -250,5 +250,15 @@ code, pre{
   .SemNavigator button {
     margin: 10px;
   }
-  
+
+  .footer-container{
+    min-height: 65vh;
+  }
+}
+ 
+@media only screen and (min-height: 800px) {
+
+  .footer-container{
+    min-height: 73vh;
+  }
 }
