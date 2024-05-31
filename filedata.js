@@ -1,6 +1,7 @@
 const fileData = {
     OOPJ: {
-        Practical1: `1    Program to implement a Class and method without parameters.
+        Practical1: `
+1    Program to implement a Class and method without parameters.
 
 class p1 {
     void display() {
@@ -347,7 +348,7 @@ Protected variable: 30
 Public variable: 40
 `,
         Practical12: `
-Program to implement the use of static keyword.		
+12  Program to implement the use of static keyword.		
 
 public class p12 {
     static int numInstances = 0;
@@ -1587,7 +1588,7 @@ courses.html
         </html>
 `,
         Practical2: `
-        2. Create your class timetable using table tag.
+2. Create your class timetable using table tag.
 
 Index.html
 
@@ -1679,7 +1680,7 @@ Index.html
   </html>
 `,
         Practical3: `
-        3. Create user Student feedback form (use textbox, text area, checkbox, radio button, select box etc.)
+3. Create user Student feedback form (use textbox, text area, checkbox, radio button, select box etc.)
 feedbackform.html
   <!DOCTYPE html>
   <html lang="en">
@@ -1876,7 +1877,7 @@ Form.html
   </html>
 `,
         Practical4: `
-        4. Create a web page using frame. Divide the page into two parts with Navigation links on left hand side of page (width=20%) and content page on right hand side of page (width = 80%). On clicking the navigation Links corresponding content must be shown on the right hand side.
+4. Create a web page using frame. Divide the page into two parts with Navigation links on left hand side of page (width=20%) and content page on right hand side of page (width = 80%). On clicking the navigation Links corresponding content must be shown on the right hand side.
 index.html
     <!DOCTYPE html>
     <html>
@@ -1965,7 +1966,7 @@ page3.html
     </html>
 `,
         Practical5: `
-        5. Create your resume using HTML tags also experiment with colors, text, link , size and also other tags you studied.
+5. Create your resume using HTML tags also experiment with colors, text, link , size and also other tags you studied.
 resume.html
 
   <!DOCTYPE html>
@@ -2017,7 +2018,7 @@ resume.html
   </html>
 `,
         Practical6: `
-        6. Design a web page of your home town with an attractive background color, text color, an Image, font etc. (use internal CSS).</div>
+6. Design a web page of your home town with an attractive background color, text color, an Image, font etc. (use internal CSS).</div>
 Index.html
 
   <!DOCTYPE html>
@@ -2115,7 +2116,7 @@ Index.html
   </html>
 `,
         Practical7: `
-        7. Use Inline CSS to format your resume that you created.
+7. Use Inline CSS to format your resume that you created.
 
 resume.html
 
@@ -2168,7 +2169,7 @@ resume.html
   </html>
 `,
         Practical8: `
-        8. Use External CSS to format your class timetable as you created
+8. Use External CSS to format your class timetable as you created
 Index.html
 
   <!DOCTYPE html>
@@ -2343,7 +2344,7 @@ table{
 }
 `,
         Practical9: `
-        9. Use External, Internal, and Inline CSS to format college web page that you created
+9. Use External, Internal, and Inline CSS to format college web page that you created
 index.html
   <!DOCTYPE html>
   <html>
@@ -2624,7 +2625,7 @@ nav li {
 }
 `,
         Practical11: `
-        11. Develop a JavaScript to display today’s date.
+11. Develop a JavaScript to display today’s date.
 date.html
 
   <!DOCTYPE html>
@@ -2653,7 +2654,7 @@ date.html
   </html>
 `,
         Practical12: `
-        12. Develop simple calculator for addition, subtraction, multiplication and division operation using JavaScript
+12. Develop simple calculator for addition, subtraction, multiplication and division operation using JavaScript
 index.html
 
   <!DOCTYPE html>
@@ -2779,7 +2780,7 @@ index.html
   </html>
 `,
         Practical13: `
-        13. Create HTML Page with JavaScript which takes Integer number as input and tells whether the number is ODD or EVEN
+13. Create HTML Page with JavaScript which takes Integer number as input and tells whether the number is ODD or EVEN
 Index.html
 
 <!DOCTYPE html>
@@ -2859,7 +2860,7 @@ Index.html
 
 `,
         Practical14: `
-        14. Create HTML Page that contains form with fields Name, Email, Mobile No, Gender, Favourite Color and a button. Also write a JavaScript code to combine and display the information in textbox when the button is clicked.
+14. Create HTML Page that contains form with fields Name, Email, Mobile No, Gender, Favourite Color and a button. Also write a JavaScript code to combine and display the information in textbox when the button is clicked.
 Index.html
   <!DOCTYPE html>
   <html>
@@ -3003,7 +3004,7 @@ Index.html
   </html>
 `,
         Practical15: `
-        15. Write a JavaScript code to rotate images after a specific time interval
+15. Write a JavaScript code to rotate images after a specific time interval
 Index.html
 
   <!DOCTYPE html>
@@ -3040,7 +3041,31 @@ Index.html
   </body>
   </html>
 `,
-    }
+    } //,
+//     PSNM: {
+//         Practical1: `
+// `,
+//         Practical2: `
+// `,
+//         Practical3: `
+// `,
+//         Practical4: `
+// `,
+//         Practical5: `
+// `,
+//         Practical6: `
+// `,
+//         Practical7: `
+// `,
+//         Practical8: `
+// `,
+//         Practical9: `
+// `,
+//         Practical10: `
+// `,
+//         Practical11: `
+// `,
+//     }
 };
    
 export default fileData;

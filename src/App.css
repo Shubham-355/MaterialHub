@@ -7,7 +7,6 @@ body{
 
 .MH{
   padding: 25px;
-  border-bottom: 1px solid #8080805e;
 }
 
 .MaterialHubOP{
@@ -44,12 +43,10 @@ body{
   text-align: center;
 }
 
-.SemContent{
-  color: white;
-}
-
 .SemContainer{
   background-color: black;
+  border-top: 1px solid #8080805e;
+  overflow: hidden;
 }
 
 .SemNavigatorContainer{
@@ -59,11 +56,11 @@ body{
 .SemNavigator{
   display: flex;
   margin: 10px;
+  width: 100%;
 }
 
 .SemNavigator button{
   margin: auto;
-  color: white;
   background-color: #1b1b1b;
   padding: 10px;
   border-radius: 3px;
@@ -108,10 +105,16 @@ body{
   margin: 10px;
 }
 
+pre{
+  border-radius: 3px;
+  padding: 10px;
+  color: white;
+}
+
 code, pre{
-  width: 100%;
+  width: 96%;
   overflow-y: hidden;
-  background-color: black !important;
+  margin: 10px;
 }
 
 .practicals{
@@ -146,4 +149,19 @@ code, pre{
   border: none;
   margin: 10px;
   padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .SemNavigator  {
+    margin: 1px;
+    overflow: scroll;
+    overflow-y: hidden;
+    padding: 0px;
+  }
+
+  .SemNavigator button {
+    margin: 10px;
+  }
+  
 }
