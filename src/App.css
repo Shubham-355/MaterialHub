@@ -178,6 +178,47 @@ code, pre{
   cursor: pointer;
 }
 
+.footer-container{
+  position: relative;
+  width: 100%;
+  min-height: 65vh;
+  bottom: 0;
+}
+
+.footer-content{
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #8080805e;
+}
+
+.footertitle{
+  color: white;
+}
+
+.social{
+  font-size: 26px;
+  margin: 10px;
+  padding-top: 10px;
+}
+
+.social a{
+  margin: 10px;
+}
+
+.twitter-icon{
+  color: white;
+}
+
+.instagram-icon{
+  color: #ff00ff;
+}
+
+.linkedin-icon{
+  color: #0077B5;
+}
+
 ::-webkit-scrollbar{
   height: 5px;
   width: 5px;
