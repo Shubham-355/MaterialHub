@@ -10,12 +10,6 @@ function App() {
         <MaterialHub />
         <Sem />
       </BrowserRouter>
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path='/' element={<MaterialHub />} />
-    //     {/* <Route path='/' element={<Sem />} /> */}
-    //   </Routes>
-    // </BrowserRouter>
   )
 }
 

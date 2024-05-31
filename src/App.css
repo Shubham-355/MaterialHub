@@ -43,6 +43,50 @@ body{
   text-align: center;
 }
 
+.popup-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-container{
+  color: #ffa31a;
+  padding: 20px;
+  border-radius: 5px;
+  width: 600px;
+  text-align: center;
+}
+
+.popup-container div{
+  margin: 10px;
+}
+
+.close-btn, .open-btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.eyeclose, .infobtn{
+  color: #ffa31a;
+}
+
+.copyrightgif{
+  width: 300px;
+}
+
 .SemContainer{
   background-color: black;
   border-top: 1px solid #8080805e;
