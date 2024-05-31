@@ -117,21 +117,21 @@ code, pre{
   margin: 10px;
 }
 
-.practicalsContainer{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
 .practicals{
   display: flex;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+}
+
+.practicals button{
+  background-color: #1b1b1b;
+  color: white;
+  border: none;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar{
@@ -151,15 +151,6 @@ code, pre{
 
 ::-webkit-scrollbar-thumb {
   background-color: #ffa31a;
-}
-
-.practicals button{
-  background-color: #1b1b1b;
-  color: white;
-  border: none;
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
