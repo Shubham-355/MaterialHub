@@ -131,12 +131,14 @@ function ITW() {
 
     return (
         <div className="SubDataContainer">
-            <div className="practicals">
-                {Object.keys(practicals).map((key, index) => (
-                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
-                        {key}
-                    </button>
-                ))}
+            <div className="practicalsContainer">
+                <div className="practicals">
+                    {Object.keys(practicals).map((key, index) => (
+                        <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                            {key}
+                        </button>
+                    ))}
+                </div>
             </div>
             <div className="practical-content">
                 <pre>
@@ -148,16 +150,7 @@ function ITW() {
         </div>
     );
 }
-function POM() {
-    return (   
-        <button className="Subject">POM</button> 
-    )
-}
-function COA() {
-    return (   
-        <button>COA</button> 
-    )
-}
+
 function OS() {
     const [selectedPractical, setSelectedPractical] = useState('');
     const handleButtonClick = (code) => {
@@ -167,12 +160,14 @@ function OS() {
     const practicals = fileData?.OS || {};
     return (   
         <div className="SubDataContainer">
-            <div className="practicals">
-                {Object.keys(practicals).map((key, index) => (
-                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
-                        {key}
-                    </button>
-                ))}
+            <div className="practicalsContainer">
+                <div className="practicals">
+                    {Object.keys(practicals).map((key, index) => (
+                        <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                            {key}
+                        </button>
+                    ))}
+                </div>
             </div>
             <div className="practical-content">
                 <pre>
@@ -194,12 +189,14 @@ function OOPJ() {
 
     return (
         <div className="SubDataContainer">
-            <div className="practicals">
-                {Object.keys(practicals).map((key, index) => (
-                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
-                        {key}
-                    </button>
-                ))}
+            <div className="practicalsContainer">
+                <div className="practicals">
+                    {Object.keys(practicals).map((key, index) => (
+                        <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                            {key}
+                        </button>
+                    ))}
+                </div>
             </div>
             <div className="practical-content">
                 <pre>
@@ -221,12 +218,14 @@ function PSNM() {
 
     return (
         <div className="SubDataContainer">
-            <div className="practicals">
-                {Object.keys(practicals).map((key, index) => (
-                    <button key={index} onClick={() => handleButtonClick(practicals[key])}>
-                        {key}
-                    </button>
-                ))}
+            <div className="practicalsContainer">
+                <div className="practicals">
+                    {Object.keys(practicals).map((key, index) => (
+                        <button key={index} onClick={() => handleButtonClick(practicals[key])}>
+                            {key}
+                        </button>
+                    ))}
+                </div>
             </div>
             <div className="practical-content">
                 <pre>
