@@ -64,6 +64,7 @@ body{
   border-radius: 5px;
   width: 600px;
   text-align: center;
+  animation: fade 120ms ease 50ms backwards;
 }
 
 .popup-container div{
