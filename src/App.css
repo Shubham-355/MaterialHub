@@ -3,6 +3,7 @@ body{
  padding: 0;
  background-color: black;
  font-family: Arial;
+ animation: fade 1200ms ease 500ms backwards;
 }
 
 .MH{
@@ -112,19 +113,16 @@ body{
   border: none;
 }
 
+.sem3btn, .sem4btn, .sem5btn, .sem6btn, .sem7btn, .sem8btn{
+  animation: fade 1200ms ease 500ms backwards;
+}
+
 .SubGridContainer{
   padding: 10px;
 }
 
 .SubGrid{
   display: flex;
-  /* margin-left: -25px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 10px;
-  overflow-x: auto;
-  padding: 30px; */
-  
 }
 
 .SubGrid button{
@@ -135,10 +133,7 @@ body{
   cursor: pointer;
   border: none;
   background-color: #1b1b1b;
-  /* background-color: #1b1b1b;
-  color: white;
-  text-align: center;
-  padding: 10px; */
+  animation: drop 120ms ease 50ms backwards;
 }
 
 .SubGrid div.active {
@@ -167,6 +162,7 @@ code, pre{
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+  animation: fade 120ms ease 50ms backwards;
 }
 
 .practicals button{
@@ -183,6 +179,7 @@ code, pre{
   width: 100%;
   min-height: 73vh;
   bottom: 0;
+  animation: drop 1200ms ease 500ms backwards;
 }
 
 .footer-content{
@@ -236,6 +233,28 @@ code, pre{
 
 ::-webkit-scrollbar-thumb {
   background-color: #ffa31a;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  } 
+
+  to{
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
 @media screen and (max-width: 600px) {

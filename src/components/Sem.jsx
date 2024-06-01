@@ -34,7 +34,7 @@ function Sem() {
             Sem 4
           </button>
           <button
-            className="sem5tn"
+            className="sem5btn"
             style={getButtonStyle(5)}
             onClick={() => setSelectedSemester(5)}
           >
