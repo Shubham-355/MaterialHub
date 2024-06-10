@@ -2,6 +2,12 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import fileData from "../../filedata";
+import Prism from 'prismjs';
+import "prismjs/themes/prism-funky.css"
+import "prismjs/components/prism-javascript"
+import "prismjs/components/prism-java"
+import "prismjs/components/prism-markup"
+import "prismjs/components/prism-bash"
 
 function Sem() {
   const navigate = useNavigate();
@@ -109,14 +115,14 @@ function Sem4({ navigate }) {
     <div className="SemContent">
       <div className="SubGridContainer">
         <div className="SubGrid">
-          {/* <button onClick={() => setSelectedSub(10)}>POM</button> */}
+          <button onClick={() => setSelectedSub(10)}>POM</button>
           <button onClick={() => setSelectedSub(12)}>PSNM</button>
           {/* <button onClick={() => setSelectedSub(9)}>COA</button> */}
           <button onClick={() => setSelectedSub(13)}>OS</button>
           <button onClick={() => setSelectedSub(11)}>OOPJ</button>
         </div>
       </div>
-      {/* {selectedSub === 10 && <POM navigate={navigate} />} */}
+      {selectedSub === 10 && <POM navigate={navigate} />}
       {selectedSub === 12 && <PSNM navigate={navigate} />}
       {/* {selectedSub === 9 && <COA navigate={navigate} />} */}
       {selectedSub === 13 && <OS navigate={navigate} />}
@@ -149,6 +155,10 @@ function ITW() {
 
   const practicals = fileData?.ITW || {};
 
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [selectedPractical]);
+
   return (
     <div className="SubDataContainer">
       <div className="practicals">
@@ -163,7 +173,7 @@ function ITW() {
       </div>
       <div className="practical-content">
         <pre>
-          <code>{selectedPractical}</code>
+          <code className="language-html">{selectedPractical}</code>
         </pre>
       </div>
     </div>
@@ -177,6 +187,11 @@ function OS() {
   };
 
   const practicals = fileData?.OS || {};
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [selectedPractical]);
+
   return (
     <div className="SubDataContainer">
       <div className="practicals">
@@ -191,12 +206,13 @@ function OS() {
       </div>
       <div className="practical-content">
         <pre>
-          <code>{selectedPractical}</code>
+          <code className="language-bash">{selectedPractical}</code>
         </pre>
       </div>
     </div>
   );
 }
+
 function OOPJ() {
   const [selectedPractical, setSelectedPractical] = useState("");
   const handleButtonClick = (code) => {
@@ -205,9 +221,57 @@ function OOPJ() {
 
   const practicals = fileData?.OOPJ || {};
 
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [selectedPractical]);
+
   return (
     <div className="SubDataContainer">
       <div className="practicals">
+        {Object.keys(practicals).map((key, index) => (
+          <button
+            key={index}
+            onClick={() => handleButtonClick(practicals[key])}
+          >
+            {key}
+          </button>
+        ))}
+      </div>
+      <div className="practical-content">
+        <pre>
+          <code className="language-java">{selectedPractical}</code>
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function PSNM() {
+  const [selectedPractical, setSelectedPractical] = useState("");
+  const [selectedAssignment, setSelectedAssignment] = useState(null);
+  const handleButtonClick = (code) => {
+    setSelectedPractical(code);
+  };
+
+  const handleAssignmentButtonClick = (pdfPath) => {
+    setSelectedAssignment(pdfPath);
+    setSelectedPractical(null);
+    window.open(pdfPath, "_blank");
+  };
+
+  const { practicals, assignments } = fileData?.PSNM || {};
+
+  return (
+    <div className="SubDataContainer">
+      <div className="practicals">
+        {Object.keys(assignments).map((key, index) => (
+          <button
+            key={index}
+            onClick={() => handleAssignmentButtonClick(assignments[key])}
+          >
+            {key}
+          </button>
+        ))}
         {Object.keys(practicals).map((key, index) => (
           <button
             key={index}
@@ -225,30 +289,31 @@ function OOPJ() {
     </div>
   );
 }
-function PSNM() {
-  const [selectedPractical, setSelectedPractical] = useState("");
+
+function POM() {
+  const [selectedAssignment, setSelectedAssignment] = useState(null);
   const handleButtonClick = (code) => {
     setSelectedPractical(code);
   };
 
-  const practicals = fileData?.PSNM || {};
+  const handleAssignmentButtonClick = (pdfPath) => {
+    setSelectedAssignment(pdfPath);
+    window.open(pdfPath, "_blank");
+  };
+
+  const { assignments } = fileData?.POM || {};
 
   return (
     <div className="SubDataContainer">
       <div className="practicals">
-        {Object.keys(practicals).map((key, index) => (
+        {Object.keys(assignments).map((key, index) => (
           <button
             key={index}
-            onClick={() => handleButtonClick(practicals[key])}
+            onClick={() => handleAssignmentButtonClick(assignments[key])}
           >
             {key}
           </button>
         ))}
-      </div>
-      <div className="practical-content">
-        <pre>
-          <code>{selectedPractical}</code>
-        </pre>
       </div>
     </div>
   );

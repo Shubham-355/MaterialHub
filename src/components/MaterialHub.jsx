@@ -2,18 +2,20 @@ import { useState } from "react"
 import InfoPopup from "./InfoPopup";
 import { VscInfo } from "react-icons/vsc";
 import copyright from '../assets/copyright.gif'
+import { Link } from "react-router-dom";
 
 function MaterialHub() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     
     return (
         <div className="MH">
+            <Link to="/" className="link">
             <div className="MaterialHub">
                 <div className="MaterialHubOP">
                     <div className="frontMaterialHubOP">Material</div>
                     <div className="backMaterialHubOP">Hub</div>
                 </div>
-            </div>
+            </div></Link>
             <div className="MaterialHubDescription">Feel free to use</div>
 
             <button className="open-btn" onClick={() => setIsPopupOpen(true)}><VscInfo className="infobtn" /></button>

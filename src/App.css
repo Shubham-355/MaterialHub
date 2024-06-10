@@ -44,6 +44,11 @@ body{
   text-align: center;
 }
 
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+
 .popup-overlay{
   position: absolute;
   top: 0;
@@ -148,7 +153,6 @@ body{
 pre{
   border-radius: 3px;
   padding: 10px;
-  color: white;
 }
 
 code, pre{
@@ -173,6 +177,11 @@ code, pre{
   margin: 10px;
   padding: 10px;
   cursor: pointer;
+}
+
+.iframe-container{
+  display: flex;
+  justify-content: center;
 }
 
 .footer-container{

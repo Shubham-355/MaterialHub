@@ -5,6 +5,25 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const envVariables = [
+  'REACT_APP_TWITTER_URL',
+  'REACT_APP_INSTAGRAM_URL',
+  'REACT_APP_LINKEDIN_URL',
+  'REACT_APP_PSNM_CHAPTER1_URL',
+  'REACT_APP_PSNM_CHAPTER2_URL',
+  'REACT_APP_PSNM_CHAPTER4_URL',
+  'REACT_APP_PSNM_CHAPTER5_URL',
+  'REACT_APP_PSNM_CHAPTER7_URL',
+  'REACT_APP_POM_ASSIGNMENT_URL',
+]
+
+const defineEnv = {};
+envVariables.forEach((envVar) => {
+  if(process.env[envVar]) {
+    defineEnv[`process.env.${envVar}`] = JSON.stringify(process.env[envVar]);
+  }
+}); 
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -18,9 +37,5 @@ export default defineConfig({
       ]
     })
   ],
-  define: {
-    'process.env.REACT_APP_TWITTER_URL': JSON.stringify(process.env.REACT_APP_TWITTER_URL),
-    'process.env.REACT_APP_INSTAGRAM_URL': JSON.stringify(process.env.REACT_APP_INSTAGRAM_URL),
-    'process.env.REACT_APP_LINKEDIN_URL': JSON.stringify(process.env.REACT_APP_LINKEDIN_URL),
-  }
+  define: defineEnv
 })

@@ -4724,7 +4724,28 @@ Ref. str  Page frames
 
 Total no. of page faults : 10
 `,
-    }
+    },
+    PSNM : {
+
+        practicals: {
+            
+        },
+
+        assignments: {
+            "CHAPTER 1": `${process.env.REACT_APP_PSNM_CHAPTER1_URL}`,
+            "CHAPTER 2": `${process.env.REACT_APP_PSNM_CHAPTER2_URL}`,
+            "CHAPTER 4": `${process.env.REACT_APP_PSNM_CHAPTER4_URL}`,
+            "CHAPTER 5": `${process.env.REACT_APP_PSNM_CHAPTER5_URL}`,
+            "CHAPTER 7": `${process.env.REACT_APP_PSNM_CHAPTER7_URL}`,
+        },
+
+    },
+    POM : {
+
+        assignments: {
+        "ASSIGNMENT 1": `${process.env.REACT_APP_POM_ASSIGNMENT_URL}`,        }
+
+    },
 };
    
 export default fileData;
