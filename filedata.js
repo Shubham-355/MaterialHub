@@ -4746,6 +4746,4576 @@ Total no. of page faults : 10
         "ASSIGNMENT 1": `${process.env.REACT_APP_POM_ASSIGNMENT_URL}`,        }
 
     },
+    AJP : {
+        Practical1: `
+1 Create a simple calculator application using Swing in Java
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Calculator extends JFrame implements ActionListener {
+    private JTextField display;
+    private JButton[] numberButtons;
+    private JButton[] functionButtons;
+    private JButton addButton, subButton, mulButton, divButton, decButton, equButton, delButton, clrButton;
+    private JPanel panel;
+
+    private Font font = new Font("Arial", Font.PLAIN, 20);
+
+    private double num1 = 0, num2 = 0, result = 0;
+    private char operator;
+
+    public Calculator() {
+        setTitle("Calculator");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(420, 550);
+        setLayout(null);
+
+        display = new JTextField();
+        display.setBounds(50, 25, 300, 50);
+        display.setFont(font);
+        display.setEditable(false);
+        add(display);
+
+        addButton = new JButton("+");
+        subButton = new JButton("-");
+        mulButton = new JButton("*");
+        divButton = new JButton("/");
+        decButton = new JButton(".");
+        equButton = new JButton("=");
+        delButton = new JButton("Del");
+        clrButton = new JButton("Clr");
+
+        functionButtons = new JButton[8];
+        functionButtons[0] = addButton;
+        functionButtons[1] = subButton;
+        functionButtons[2] = mulButton;
+        functionButtons[3] = divButton;
+        functionButtons[4] = decButton;
+        functionButtons[5] = equButton;
+        functionButtons[6] = delButton;
+        functionButtons[7] = clrButton;
+
+        for (int i = 0; i < 8; i++) {
+            functionButtons[i].addActionListener(this);
+            functionButtons[i].setFont(font);
+            functionButtons[i].setFocusable(false);
+        }
+
+        numberButtons = new JButton[10];
+        for (int i = 0; i < 10; i++) {
+            numberButtons[i] = new JButton(String.valueOf(i));
+            numberButtons[i].addActionListener(this);
+            numberButtons[i].setFont(font);
+            numberButtons[i].setFocusable(false);
+        }
+
+        delButton.setBounds(50, 430, 145, 50);
+        clrButton.setBounds(205, 430, 145, 50);
+
+        panel = new JPanel();
+        panel.setBounds(50, 100, 300, 300);
+        panel.setLayout(new GridLayout(4, 4, 10, 10));
+
+        panel.add(numberButtons[1]);
+        panel.add(numberButtons[2]);
+        panel.add(numberButtons[3]);
+        panel.add(addButton);
+        panel.add(numberButtons[4]);
+        panel.add(numberButtons[5]);
+        panel.add(numberButtons[6]);
+        panel.add(subButton);
+        panel.add(numberButtons[7]);
+        panel.add(numberButtons[8]);
+        panel.add(numberButtons[9]);
+        panel.add(mulButton);
+        panel.add(decButton);
+        panel.add(numberButtons[0]);
+        panel.add(equButton);
+        panel.add(divButton);
+
+        add(panel);
+        add(delButton);
+        add(clrButton);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Calculator();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < 10; i++) {
+            if (e.getSource() == numberButtons[i]) {
+                display.setText(display.getText().concat(String.valueOf(i)));
+            }
+        }
+        if (e.getSource() == decButton) {
+            display.setText(display.getText().concat("."));
+        }
+        if (e.getSource() == addButton) {
+            num1 = Double.parseDouble(display.getText());
+            operator = '+';
+            display.setText("");
+        }
+        if (e.getSource() == subButton) {
+            num1 = Double.parseDouble(display.getText());
+            operator = '-';
+            display.setText("");
+        }
+        if (e.getSource() == mulButton) {
+            num1 = Double.parseDouble(display.getText());
+            operator = '*';
+            display.setText("");
+        }
+        if (e.getSource() == divButton) {
+            num1 = Double.parseDouble(display.getText());
+            operator = '/';
+            display.setText("");
+        }
+        if (e.getSource() == equButton) {
+            num2 = Double.parseDouble(display.getText());
+
+            switch (operator) {
+                case '+' -> result = num1 + num2;
+                case '-' -> result = num1 - num2;
+                case '*' -> result = num1 * num2;
+                case '/' -> result = num1 / num2;
+            }
+            display.setText(String.valueOf(result));
+            num1 = result;
+        }
+        if (e.getSource() == clrButton) {
+            display.setText("");
+        }
+        if (e.getSource() == delButton) {
+            String string = display.getText();
+            display.setText("");
+            for (int i = 0; i < string.length() - 1; i++) {
+                display.setText(display.getText() + string.charAt(i));
+            }
+        }
+    }
+}
+            `,
+            Practical2:`
+2 Implement Student information system using JDBC
+
+CREATE DATABASE StudentDB;
+
+USE StudentDB;
+
+CREATE TABLE Students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    grade VARCHAR(10)
+);
+
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class StudentInformationSystem {
+
+    // Database URL, username, and password
+    static final String DB_URL = "jdbc:mysql://localhost:3306/StudentDB";
+    static final String USER = "root";
+    static final String PASS = "password"; // replace with your MySQL password
+
+    public static void main(String[] args) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
+            System.out.println("Connected to the database successfully!");
+
+            // Creating a Scanner object for user input
+            Scanner scanner = new Scanner(System.in);
+
+            while (true) {
+                System.out.println("\n--- Student Information System ---");
+                System.out.println("1. Add Student");
+                System.out.println("2. View All Students");
+                System.out.println("3. Update Student");
+                System.out.println("4. Delete Student");
+                System.out.println("5. Exit");
+                System.out.print("Enter your choice: ");
+                
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                switch (choice) {
+                    case 1:
+                        addStudent(conn, scanner);
+                        break;
+                    case 2:
+                        viewAllStudents(conn);
+                        break;
+                    case 3:
+                        updateStudent(conn, scanner);
+                        break;
+                    case 4:
+                        deleteStudent(conn, scanner);
+                        break;
+                    case 5:
+                        System.out.println("Exiting the system.");
+                        return;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void addStudent(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter student name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter student age: ");
+        int age = scanner.nextInt();
+        System.out.print("Enter student grade: ");
+        String grade = scanner.next();
+
+        String sql = "INSERT INTO Students (name, age, grade) VALUES (?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, grade);
+            pstmt.executeUpdate();
+            System.out.println("Student added successfully!");
+        }
+    }
+
+    private static void viewAllStudents(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM Students";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            System.out.println("\n--- Student List ---");
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Name: " + rs.getString("name"));
+                System.out.println("Age: " + rs.getInt("age"));
+                System.out.println("Grade: " + rs.getString("grade"));
+                System.out.println();
+            }
+        }
+    }
+
+    private static void updateStudent(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter the student ID to update: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter new student name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter new student age: ");
+        int age = scanner.nextInt();
+        System.out.print("Enter new student grade: ");
+        String grade = scanner.next();
+
+        String sql = "UPDATE Students SET name = ?, age = ?, grade = ? WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, grade);
+            pstmt.setInt(4, id);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Student updated successfully!");
+            } else {
+                System.out.println("Student with ID " + id + " not found.");
+            }
+        }
+    }
+
+    private static void deleteStudent(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter the student ID to delete: ");
+        int id = scanner.nextInt();
+
+        String sql = "DELETE FROM Students WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Student deleted successfully!");
+            } else {
+                System.out.println("Student with ID " + id + " not found.");
+            }
+        }
+    }
+}
+            `,
+            Practical3:`
+3   a. Create chat application using TCP protocol.
+    b. Create chat application using UDP protocol.
+
+Part A: Chat Application using TCP
+
+TCP Server Code (TCPChatServer.java)
+
+import java.io.*;
+import java.net.*;
+
+public class TCPChatServer {
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(12345)) {
+            System.out.println("Server started. Waiting for a client...");
+
+            try (Socket clientSocket = serverSocket.accept();
+                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+
+                System.out.println("Client connected!");
+
+                Thread sendThread = new Thread(() -> {
+                    String serverMessage;
+                    try {
+                        while ((serverMessage = stdIn.readLine()) != null) {
+                            out.println("Server: " + serverMessage);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                Thread receiveThread = new Thread(() -> {
+                    String clientMessage;
+                    try {
+                        while ((clientMessage = in.readLine()) != null) {
+                            System.out.println(clientMessage);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                sendThread.start();
+                receiveThread.start();
+
+                sendThread.join();
+                receiveThread.join();
+
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+TCP Client Code (TCPChatClient.java)
+
+import java.io.*;
+import java.net.*;
+
+public class TCPChatClient {
+    public static void main(String[] args) {
+        String serverAddress = "localhost"; // or the server's IP address
+        int serverPort = 12345;
+
+        try (Socket socket = new Socket(serverAddress, serverPort);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+
+            System.out.println("Connected to the server!");
+
+            Thread sendThread = new Thread(() -> {
+                String clientMessage;
+                try {
+                    while ((clientMessage = stdIn.readLine()) != null) {
+                        out.println("Client: " + clientMessage);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            Thread receiveThread = new Thread(() -> {
+                String serverMessage;
+                try {
+                    while ((serverMessage = in.readLine()) != null) {
+                        System.out.println(serverMessage);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            sendThread.start();
+            receiveThread.start();
+
+            sendThread.join();
+            receiveThread.join();
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Part B: Chat Application using UDP
+
+UDP Server Code (UDPChatServer.java)
+
+import java.net.*;
+
+public class UDPChatServer {
+    public static void main(String[] args) {
+        try (DatagramSocket serverSocket = new DatagramSocket(9876)) {
+            byte[] receiveBuffer = new byte[1024];
+            byte[] sendBuffer;
+
+            System.out.println("Server is running and waiting for client messages...");
+
+            while (true) {
+                DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+                serverSocket.receive(receivePacket);
+
+                String clientMessage = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                System.out.println("Client: " + clientMessage);
+
+                InetAddress clientAddress = receivePacket.getAddress();
+                int clientPort = receivePacket.getPort();
+
+                String serverResponse = "Server: " + clientMessage;
+                sendBuffer = serverResponse.getBytes();
+
+                DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, clientAddress, clientPort);
+                serverSocket.send(sendPacket);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+UDP Client Code (UDPChatClient.java)
+
+import java.net.*;
+import java.io.*;
+
+public class UDPChatClient {
+    public static void main(String[] args) {
+        String serverAddress = "localhost"; // or the server's IP address
+        int serverPort = 9876;
+
+        try (DatagramSocket clientSocket = new DatagramSocket();
+             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+
+            byte[] sendBuffer;
+            byte[] receiveBuffer = new byte[1024];
+
+            InetAddress serverIPAddress = InetAddress.getByName(serverAddress);
+
+            while (true) {
+                System.out.print("You: ");
+                String clientMessage = stdIn.readLine();
+
+                sendBuffer = clientMessage.getBytes();
+                DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, serverIPAddress, serverPort);
+                clientSocket.send(sendPacket);
+
+                DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+                clientSocket.receive(receivePacket);
+
+                String serverMessage = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                System.out.println(serverMessage);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+            `,
+            Practical4:`
+4 Develop an EJB application to store and retrieve the student record.
+
+CREATE DATABASE StudentDB;
+
+USE StudentDB;
+
+CREATE TABLE Students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    grade VARCHAR(10)
+);
+
+// Create the EJB Components
+
+package com.example.ejb.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Students")
+public class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+    private int age;
+    private String grade;
+
+    // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+}
+
+// Create the Session Bean
+
+package com.example.ejb.session;
+
+import com.example.ejb.entity.Student;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
+@Stateless
+public class StudentBean {
+
+    @PersistenceContext(unitName = "StudentPU")
+    private EntityManager em;
+
+    public void addStudent(Student student) {
+        em.persist(student);
+    }
+
+    public List<Student> getAllStudents() {
+        return em.createQuery("SELECT s FROM Student s", Student.class).getResultList();
+    }
+
+    public Student getStudent(int id) {
+        return em.find(Student.class, id);
+    }
+
+    public void updateStudent(Student student) {
+        em.merge(student);
+    }
+
+    public void deleteStudent(int id) {
+        Student student = getStudent(id);
+        if (student != null) {
+            em.remove(student);
+        }
+    }
+}
+
+// Develop the Client Application
+
+package com.example.ejb.client;
+
+import com.example.ejb.entity.Student;
+import com.example.ejb.session.StudentBean;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+@WebServlet("/StudentServlet")
+public class StudentServlet extends HttpServlet {
+
+    @EJB
+    private StudentBean studentBean;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><body>");
+        out.println("<h1>Student Records</h1>");
+
+        List<Student> students = studentBean.getAllStudents();
+        for (Student student : students) {
+            out.println("<p>ID: " + student.getId() + ", Name: " + student.getName() + ", Age: " + student.getAge() + ", Grade: " + student.getGrade() + "</p>");
+        }
+
+        out.println("</body></html>");
+    }
+}
+
+// Configuration and Deployment
+
+// 1 Configure Persistence:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="StudentPU" transaction-type="JTA">
+        <jta-data-source>jdbc/StudentDB</jta-data-source>
+        <class>com.example.ejb.entity.Student</class>
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+// 2 Database Configuration:
+
+<Resource id="jdbc/StudentDB" type="DataSource">
+    JdbcDriver = com.mysql.cj.jdbc.Driver
+    JdbcUrl = jdbc:mysql://localhost:3306/StudentDB
+    UserName = root
+    Password = yourpassword
+</Resource>
+
+
+// Running the Application
+// Start the application server.
+// Access the servlet (e.g., http://localhost:8080/StudentEJBApp/StudentServlet) in a browser to view the student records.
+            `,
+            Practical5:`
+5   a) Write a Servlet to display “Welcome to LDRP” on browser.
+    b) Write a Servlet that will fetch the header information and parameter values from the header and print it on the webpage
+    c) Create a Servlet that implements ServletContextAttributeListener interface such that a message dialog is displayed whenever an attribute is added or removed or replaced.
+
+Part A: Servlet to Display "Welcome to LDRP"
+
+WelcomeServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/welcome")
+public class WelcomeServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.getWriter().println("<h1>Welcome to LDRP</h1>");
+    }
+}
+
+Part B: Servlet to Fetch and Display Header Information
+
+HeaderInfoServlet.java
+
+import java.io.IOException;
+import java.util.Enumeration;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/header-info")
+public class HeaderInfoServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+
+        // Get the PrintWriter object to write the response
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+
+        out.println("<h2>Header Information</h2>");
+        // Enumerate and print all header names and values
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            out.println("<p>" + headerName + ": " + headerValue + "</p>");
+        }
+
+        out.println("<h2>Parameter Values</h2>");
+        // Enumerate and print all parameter names and values
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String paramName = parameterNames.nextElement();
+            String paramValue = request.getParameter(paramName);
+            out.println("<p>" + paramName + ": " + paramValue + "</p>");
+        }
+
+        out.println("</body></html>");
+    }
+}
+
+Part C: Servlet to Implement ServletContextAttributeListener
+
+ContextAttributeListener.java
+
+import javax.servlet.ServletContextAttributeEvent;
+import javax.servlet.ServletContextAttributeListener;
+import javax.servlet.annotation.WebListener;
+
+@WebListener
+public class ContextAttributeListener implements ServletContextAttributeListener {
+
+    @Override
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        System.out.println("Attribute added: " + event.getName() + " = " + event.getValue());
+    }
+
+    @Override
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        System.out.println("Attribute removed: " + event.getName());
+    }
+
+    @Override
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+        System.out.println("Attribute replaced: " + event.getName() + " = " + event.getValue());
+    }
+}
+
+AttributeServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/attribute")
+public class AttributeServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+
+        // Modify context attributes to trigger listener methods
+        getServletContext().setAttribute("attr1", "value1");
+        getServletContext().setAttribute("attr1", "value2");
+        getServletContext().removeAttribute("attr1");
+
+        response.getWriter().println("<h1>ServletContext Attributes Modified</h1>");
+    }
+}
+            `,
+            Practical6:`
+6 Write a servlet that counts the number of times that web page is visited and displays the same information on that page.
+
+VisitCounterServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/visit-counter")
+public class VisitCounterServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public void init() throws ServletException {
+        // Initialize the visit counter to zero if not already set
+        if (getServletContext().getAttribute("visitCounter") == null) {
+            getServletContext().setAttribute("visitCounter", 0);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get the visit counter from the ServletContext
+        Integer visitCounter = (Integer) getServletContext().getAttribute("visitCounter");
+
+        // Increment the counter
+        visitCounter++;
+
+        // Update the counter in the ServletContext
+        getServletContext().setAttribute("visitCounter", visitCounter);
+
+        // Set the response content type
+        response.setContentType("text/html");
+
+        // Display the visit count
+        response.getWriter().println("<html>");
+        response.getWriter().println("<head><title>Visit Counter</title></head>");
+        response.getWriter().println("<body>");
+        response.getWriter().println("<h1>Welcome to the Visit Counter Servlet!</h1>");
+        response.getWriter().println("<p>This page has been visited " + visitCounter + " times.</p>");
+        response.getWriter().println("</body>");
+        response.getWriter().println("</html>");
+    }
+}
+            `,
+            Practical7:`
+7 Assume that the information regarding the salary and age for all employees of an organization are available in a database. Develop a Servlet application which takes the employee id of an employee as a request parameter and displays the marksheet for the student.
+
+CREATE DATABASE CompanyDB;
+
+USE CompanyDB;
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    salary DECIMAL(10, 2)
+);
+
+-- Insert sample data
+INSERT INTO Employees (emp_id, name, age, salary) VALUES (1, 'Alice', 30, 75000.00);
+INSERT INTO Employees (emp_id, name, age, salary) VALUES (2, 'Bob', 45, 85000.00);
+INSERT INTO Employees (emp_id, name, age, salary) VALUES (3, 'Charlie', 25, 55000.00);
+
+EmployeeInfoServlet.java
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/employee-info")
+public class EmployeeInfoServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    // JDBC URL, username, password - modify as per your database configuration
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/CompanyDB";
+    private static final String JDBC_USER = "root";
+    private static final String JDBC_PASS = "yourpassword";
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Set the response content type
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        // Retrieve the employee ID from the request parameters
+        String empIdParam = request.getParameter("emp_id");
+        if (empIdParam == null || empIdParam.isEmpty()) {
+            out.println("<h2>Error: Employee ID is missing!</h2>");
+            return;
+        }
+
+        int empId = Integer.parseInt(empIdParam);
+
+        // JDBC connection and query
+        try {
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish the connection
+            Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+
+            // Prepare the SQL query
+            String sql = "SELECT name, age, salary FROM Employees WHERE emp_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, empId);
+
+            // Execute the query
+            ResultSet rs = stmt.executeQuery();
+
+            // Process the result set
+            if (rs.next()) {
+                String name = rs.getString("name");
+                int age = rs.getInt("age");
+                double salary = rs.getDouble("salary");
+
+                // Display the employee information
+                out.println("<html>");
+                out.println("<head><title>Employee Information</title></head>");
+                out.println("<body>");
+                out.println("<h1>Employee Information</h1>");
+                out.println("<p>Employee ID: " + empId + "</p>");
+                out.println("<p>Name: " + name + "</p>");
+                out.println("<p>Age: " + age + "</p>");
+                out.println("<p>Salary: $" + salary + "</p>");
+                out.println("</body>");
+                out.println("</html>");
+            } else {
+                out.println("<h2>No employee found with ID: " + empId + "</h2>");
+            }
+
+            // Close the resources
+            rs.close();
+            stmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println("<h2>Error: Unable to retrieve employee information</h2>");
+        }
+    }
+}
+
+web.xml
+
+<web-app>
+    <servlet>
+        <servlet-name>EmployeeInfoServlet</servlet-name>
+        <servlet-class>EmployeeInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeInfoServlet</servlet-name>
+        <url-pattern>/employee-info</url-pattern>
+    </servlet-mapping>
+</web-app>
+            `,
+            Practical8:`
+8 Write a Servlet for an online shopping website, where the customer registers himself with his name and email- id. The continue button will be available on that page and each subsequent page, which displays the list of items. The customer will choose the items and the required quantity. In last webpage the customer’s name, email id, the list of his purchased items and the bill amount is shown. The students are advised to make the use of cookies.
+
+RegistrationServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/register")
+public class RegistrationServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get name and email from request parameters
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+
+        // Create cookies for name and email
+        Cookie nameCookie = new Cookie("name", name);
+        Cookie emailCookie = new Cookie("email", email);
+
+        // Set cookie duration (in seconds, here it's 1 day)
+        nameCookie.setMaxAge(24 * 60 * 60);
+        emailCookie.setMaxAge(24 * 60 * 60);
+
+        // Add cookies to the response
+        response.addCookie(nameCookie);
+        response.addCookie(emailCookie);
+
+        // Redirect to the items list page
+        response.sendRedirect("items");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.getWriter().println("<html>");
+        response.getWriter().println("<head><title>Register</title></head>");
+        response.getWriter().println("<body>");
+        response.getWriter().println("<h1>Register</h1>");
+        response.getWriter().println("<form action='register' method='POST'>");
+        response.getWriter().println("Name: <input type='text' name='name' required><br>");
+        response.getWriter().println("Email: <input type='email' name='email' required><br>");
+        response.getWriter().println("<input type='submit' value='Continue'>");
+        response.getWriter().println("</form>");
+        response.getWriter().println("</body>");
+        response.getWriter().println("</html>");
+    }
+}
+
+ItemsServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/items")
+public class ItemsServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.getWriter().println("<html>");
+        response.getWriter().println("<head><title>Select Items</title></head>");
+        response.getWriter().println("<body>");
+        response.getWriter().println("<h1>Select Items</h1>");
+        response.getWriter().println("<form action='summary' method='POST'>");
+
+        // Display a list of items
+        String[] items = {"Item1", "Item2", "Item3", "Item4"};
+        for (String item : items) {
+            response.getWriter().println(item + ": <input type='number' name='" + item + "' value='0' min='0'><br>");
+        }
+
+        response.getWriter().println("<input type='submit' value='Continue'>");
+        response.getWriter().println("</form>");
+        response.getWriter().println("</body>");
+        response.getWriter().println("</html>");
+    }
+}
+
+SummaryServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/summary")
+public class SummaryServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Retrieve name and email from cookies
+        String name = null;
+        String email = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("name")) {
+                    name = cookie.getValue();
+                }
+                if (cookie.getName().equals("email")) {
+                    email = cookie.getValue();
+                }
+            }
+        }
+
+        // Calculate the total bill
+        double total = 0;
+        StringBuilder itemsList = new StringBuilder();
+        String[] items = {"Item1", "Item2", "Item3", "Item4"};
+        double[] prices = {10.0, 20.0, 30.0, 40.0};  // Prices for each item
+        for (int i = 0; i < items.length; i++) {
+            String quantityStr = request.getParameter(items[i]);
+            int quantity = Integer.parseInt(quantityStr != null ? quantityStr : "0");
+            if (quantity > 0) {
+                double itemTotal = quantity * prices[i];
+                total += itemTotal;
+                itemsList.append(items[i]).append(": ").append(quantity).append(" (Total: $").append(itemTotal).append(")<br>");
+            }
+        }
+
+        // Display the summary
+        response.setContentType("text/html");
+        response.getWriter().println("<html>");
+        response.getWriter().println("<head><title>Order Summary</title></head>");
+        response.getWriter().println("<body>");
+        response.getWriter().println("<h1>Order Summary</h1>");
+        response.getWriter().println("<p>Name: " + name + "</p>");
+        response.getWriter().println("<p>Email: " + email + "</p>");
+        response.getWriter().println("<h2>Purchased Items:</h2>");
+        response.getWriter().println("<p>" + itemsList.toString() + "</p>");
+        response.getWriter().println("<h3>Total Bill: $" + total + "</h3>");
+        response.getWriter().println("</body>");
+        response.getWriter().println("</html>");
+    }
+}
+            `,
+            Practical9:`
+9 Create a servlet filter that adds the request processing time in the response page.
+
+RequestTimingFilter.java
+
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+
+@WebFilter("/*") // This filter applies to all URLs
+public class RequestTimingFilter implements Filter {
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Initialization code, if needed
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        // Get the start time
+        long startTime = System.currentTimeMillis();
+
+        // Pass the request along the filter chain
+        chain.doFilter(request, response);
+
+        // Get the end time
+        long endTime = System.currentTimeMillis();
+
+        // Calculate the processing time
+        long duration = endTime - startTime;
+
+        // Add the processing time to the response
+        response.getWriter().println("<br><hr><p>Request processed in " + duration + " ms</p>");
+    }
+
+    @Override
+    public void destroy() {
+        // Cleanup code, if needed
+    }
+}
+
+web.xml
+
+<web-app>
+    <!-- Filter Definition -->
+    <filter>
+        <filter-name>RequestTimingFilter</filter-name>
+        <filter-class>RequestTimingFilter</filter-class>
+    </filter>
+
+    <!-- Filter Mapping -->
+    <filter-mapping>
+        <filter-name>RequestTimingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+            `,
+            Practical10:`
+10 Create a Login application using servlet and JSP, where the user will provide his login details in a servlet page and if the login is successful then, a JSP page with “Welcome” message and “Log Out” button should be shown. If the login is failed, then message of failure and link to further login should be shown on a JSP page. If the failure count reaches to 3 then the webpage should be closed. The students are advised to make use of session tracing mechanisms.
+
+LoginServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    // Dummy credentials for demonstration
+    private static final String USERNAME = "user";
+    private static final String PASSWORD = "password";
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get username and password from the request
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        // Get the session and initialize the login attempt count if not already set
+        HttpSession session = request.getSession(true);
+        Integer attemptCount = (Integer) session.getAttribute("attemptCount");
+        if (attemptCount == null) {
+            attemptCount = 0;
+        }
+
+        // Check the credentials
+        if (USERNAME.equals(username) && PASSWORD.equals(password)) {
+            // Successful login
+            session.setAttribute("username", username);
+            session.setAttribute("attemptCount", 0); // Reset attempt count
+            response.sendRedirect("welcome.jsp");
+        } else {
+            // Failed login
+            attemptCount++;
+            session.setAttribute("attemptCount", attemptCount);
+
+            if (attemptCount >= 3) {
+                // Invalidate the session after 3 failed attempts
+                session.invalidate();
+                response.sendRedirect("locked.jsp");
+            } else {
+                response.sendRedirect("failure.jsp");
+            }
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Display login form
+        response.setContentType("text/html");
+        response.getWriter().println("<html>");
+        response.getWriter().println("<head><title>Login</title></head>");
+        response.getWriter().println("<body>");
+        response.getWriter().println("<h1>Login</h1>");
+        response.getWriter().println("<form action='login' method='POST'>");
+        response.getWriter().println("Username: <input type='text' name='username' required><br>");
+        response.getWriter().println("Password: <input type='password' name='password' required><br>");
+        response.getWriter().println("<input type='submit' value='Login'>");
+        response.getWriter().println("</form>");
+        response.getWriter().println("</body>");
+        response.getWriter().println("</html>");
+    }
+}
+
+welcome.jsp
+
+<%@ page session="true" %>
+<%
+    String username = (String) session.getAttribute("username");
+    if (username == null) {
+        response.sendRedirect("login");
+    }
+%>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome, <%= username %>!</h1>
+    <form action="logout" method="post">
+        <input type="submit" value="Log Out">
+    </form>
+</body>
+</html>
+
+failure.jsp
+
+<%@ page session="true" %>
+<%
+    Integer attemptCount = (Integer) session.getAttribute("attemptCount");
+    if (attemptCount == null) {
+        response.sendRedirect("login");
+    }
+%>
+<html>
+<head>
+    <title>Login Failed</title>
+</head>
+<body>
+    <h1>Login Failed</h1>
+    <p>Attempt count: <%= attemptCount %></p>
+    <p><a href="login">Try again</a></p>
+</body>
+</html>
+
+locked.jsp
+
+<html>
+<head>
+    <title>Account Locked</title>
+</head>
+<body>
+    <h1>Too Many Failed Login Attempts</h1>
+    <p>Your account has been locked due to too many failed login attempts.</p>
+</body>
+</html>
+
+LogoutServlet.java
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Invalidate the session to log out the user
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("login");
+    }
+}
+
+web.xml
+
+<web-app>
+    <!-- Login Servlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <!-- Logout Servlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+</web-app>
+            `,
+            Practical11:`
+11  a) Create a web page that prints 1 to 10 using JSTL 8.2
+    b) Create a custom JSP tag that prints current date and time. Use this tag into JSP page.
+
+printNumbers.jsp
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Print Numbers 1 to 10</title>
+</head>
+<body>
+    <h1>Numbers from 1 to 10 using JSTL</h1>
+    <ul>
+        <c:forEach var="num" begin="1" end="10">
+            <li>\${num}</li>
+        </c:forEach>
+    </ul>
+</body>
+</html>
+
+
+DateTimeTagHandler.java
+
+package tags;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
+
+public class DateTimeTagHandler extends SimpleTagSupport {
+
+    @Override
+    public void doTag() throws JspException, IOException {
+        // Get the current date and time
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        // Format the date and time
+        String formattedDateTime = currentDateTime.toString(); // You can customize the formatting as needed
+
+        // Get JSP writer to output the result
+        JspWriter out = getJspContext().getOut();
+        out.print(formattedDateTime);
+    }
+}
+
+datetime.tld
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+    <description>Custom Tags</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>datetime</short-name>
+    <tag>
+        <name>datetime</name>
+        <tag-class>tags.DateTimeTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <description>Prints current date and time</description>
+    </tag>
+</taglib>
+
+currentDateTime.jsp
+
+<%@ taglib uri="/WEB-INF/datetime.tld" prefix="dt" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Current Date and Time</title>
+</head>
+<body>
+    <h1>Current Date and Time</h1>
+    <p>Current date and time: <dt:datetime /></p>
+</body>
+</html>
+            `,
+            Practical12:`
+12 Create a hibernate application for employee payroll system.
+
+Employee.java
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "employees")
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "salary")
+    private double salary;
+
+    // Constructors, getters, and setters
+    public Employee() {
+    }
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+}
+
+hibernate.cfg.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/your_database</property>
+        <property name="hibernate.connection.username">your_username</property>
+        <property name="hibernate.connection.password">your_password</property>
+
+        <!-- JDBC connection pool settings -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+
+        <!-- Hibernate dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Entities -->
+        <mapping class="com.yourpackage.Employee"/>
+    </session-factory>
+</hibernate-configuration>
+
+HibernateUtil.java
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateUtil {
+
+    private static final SessionFactory sessionFactory;
+
+    static {
+        try {
+            // Create the SessionFactory from hibernate.cfg.xml
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            // Make sure you log the exception, as it might be swallowed
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void shutdown() {
+        // Close caches and connection pools
+        getSessionFactory().close();
+    }
+}
+
+EmployeeDAO.java
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import java.util.List;
+
+public class EmployeeDAO {
+
+    public void saveEmployee(Employee employee) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Start a transaction
+            transaction = session.beginTransaction();
+
+            // Save the employee object
+            session.save(employee);
+
+            // Commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public List<Employee> getAllEmployees() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM Employee", Employee.class).list();
+        }
+    }
+
+    public Employee getEmployeeById(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Employee.class, id);
+        }
+    }
+
+    public void updateEmployee(Employee employee) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Start a transaction
+            transaction = session.beginTransaction();
+
+            // Update the employee object
+            session.update(employee);
+
+            // Commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEmployee(Long id) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Start a transaction
+            transaction = session.beginTransaction();
+
+            // Delete the employee object
+            Employee employee = session.get(Employee.class, id);
+            if (employee != null) {
+                session.delete(employee);
+            }
+
+            // Commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+}
+
+MainApp.java
+
+import java.util.List;
+
+public class MainApp {
+
+    public static void main(String[] args) {
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+
+        // Create and save new employees
+        Employee employee1 = new Employee("John Doe", 50000);
+        Employee employee2 = new Employee("Jane Smith", 60000);
+
+        employeeDAO.saveEmployee(employee1);
+        employeeDAO.saveEmployee(employee2);
+
+        // Display all employees
+        System.out.println("Employees:");
+        List<Employee> employees = employeeDAO.getAllEmployees();
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+
+        // Update an employee
+        Employee employeeToUpdate = employeeDAO.getEmployeeById(1L);
+        if (employeeToUpdate != null) {
+            employeeToUpdate.setSalary(55000);
+            employeeDAO.updateEmployee(employeeToUpdate);
+            System.out.println("Employee updated: " + employeeToUpdate);
+        }
+
+        // Delete an employee
+        Long employeeIdToDelete = 2L;
+        employeeDAO.deleteEmployee(employeeIdToDelete);
+        System.out.println("Employee deleted with id " + employeeIdToDelete);
+
+        // Display all employees after operations
+        System.out.println("Employees after operations:");
+        employees = employeeDAO.getAllEmployees();
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+
+        // Shutdown Hibernate
+        HibernateUtil.shutdown();
+    }
+}
+            `,
+            Practical13:`
+13 Create a “Hello World” application using Spring MVC framework.
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.example</groupId>
+    <artifactId>spring-mvc-hello-world</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    
+    <properties>
+        <spring.version>5.3.13</spring.version>
+    </properties>
+    
+    <dependencies>
+        <!-- Spring MVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>\${spring.version}</version>
+        </dependency>
+        
+        <!-- Servlet API for Tomcat (or your preferred servlet container) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            
+            <!-- Maven War Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+WebAppConfig.java
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = "com.example.controller")
+public class WebAppConfig implements WebMvcConfigurer {
+
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        registry.viewResolver(resolver);
+    }
+}
+
+HelloController.java
+
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class HelloController {
+
+    @RequestMapping("/")
+    @ResponseBody
+    public String helloWorld() {
+        return "Hello, World!";
+    }
+}
+
+WEB-INF/views/hello.jsp
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World</title>
+</head>
+<body>
+    <h1>\${message}</h1>
+</body>
+</html>
+
+web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         id="WebApp_ID" version="4.0">
+
+    <display-name>Spring MVC Hello World</display-name>
+
+    <!-- DispatcherServlet -->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/web.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+            `,
+            Practical14:`
+14 Create an online appointment booking application using Spring Web MVC framework
+
+pom.xml
+
+<dependencies>
+    <!-- Spring MVC -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.13</version>
+    </dependency>
+
+    <!-- Spring ORM support -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>5.3.13</version>
+    </dependency>
+
+    <!-- Hibernate ORM -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.5.7.Final</version>
+    </dependency>
+
+    <!-- MySQL Connector/J -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.28</version>
+    </dependency>
+
+    <!-- Servlet API for Tomcat (or your preferred servlet container) -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <!-- JSP API -->
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>2.3.3</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+
+WebAppConfig.java
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import javax.sql.DataSource;
+import java.util.Properties;
+
+@Configuration
+@EnableWebMvc
+@EnableTransactionManagement
+@ComponentScan(basePackages = "com.example")
+public class WebAppConfig implements WebMvcConfigurer {
+
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/appointments_db");
+        dataSource.setUsername("your_username");
+        dataSource.setPassword("your_password");
+        return dataSource;
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("com.example.model");
+        sessionFactory.setHibernateProperties(hibernateProperties());
+        return sessionFactory;
+    }
+
+    private Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        return properties;
+    }
+
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        return resolver;
+    }
+}
+
+Appointment.java
+
+package com.example.model;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "appointments")
+public class Appointment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "patient_name", nullable = false)
+    private String patientName;
+
+    @Column(name = "doctor_name", nullable = false)
+    private String doctorName;
+
+    @Column(name = "appointment_time", nullable = false)
+    private LocalDateTime appointmentTime;
+
+    // constructors, getters, setters
+}
+
+AppointmentService.java
+
+package com.example.service;
+
+import com.example.model.Appointment;
+
+import java.util.List;
+
+public interface AppointmentService {
+    void addAppointment(Appointment appointment);
+    List<Appointment> getAllAppointments();
+    Appointment getAppointmentById(Long id);
+    void updateAppointment(Appointment appointment);
+    void deleteAppointment(Long id);
+}
+
+AppointmentServiceImpl.java
+
+package com.example.service;
+
+import com.example.dao.AppointmentDAO;
+import com.example.model.Appointment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+@Transactional
+public class AppointmentServiceImpl implements AppointmentService {
+
+    @Autowired
+    private AppointmentDAO appointmentDAO;
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentDAO.addAppointment(appointment);
+    }
+
+    @Override
+    public List<Appointment> getAllAppointments() {
+        return appointmentDAO.getAllAppointments();
+    }
+
+    @Override
+    public Appointment getAppointmentById(Long id) {
+        return appointmentDAO.getAppointmentById(id);
+    }
+
+    @Override
+    public void updateAppointment(Appointment appointment) {
+        appointmentDAO.updateAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Long id) {
+        appointmentDAO.deleteAppointment(id);
+    }
+}
+
+AppointmentDAO.java
+
+package com.example.dao;
+
+import com.example.model.Appointment;
+
+import java.util.List;
+
+public interface AppointmentDAO {
+    void addAppointment(Appointment appointment);
+    List<Appointment> getAllAppointments();
+    Appointment getAppointmentById(Long id);
+    void updateAppointment(Appointment appointment);
+    void deleteAppointment(Long id);
+}
+
+AppointmentDAOImpl.java
+
+package com.example.dao;
+
+import com.example.model.Appointment;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public class AppointmentDAOImpl implements AppointmentDAO {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(appointment);
+    }
+
+    @Override
+    public List<Appointment> getAllAppointments() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM Appointment", Appointment.class).list();
+    }
+
+    @Override
+    public Appointment getAppointmentById(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Appointment.class, id);
+    }
+
+    @Override
+    public void updateAppointment(Appointment appointment) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Appointment appointment = session.get(Appointment.class, id);
+        if (appointment != null) {
+            session.delete(appointment);
+        }
+    }
+}
+
+AppointmentController.java
+
+package com.example.controller;
+
+import com.example.model.Appointment;
+import com.example.service.AppointmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("/appointments")
+public class AppointmentController {
+
+    @Autowired
+    private AppointmentService appointmentService;
+
+    @GetMapping("/list")
+    public String listAppointments(Model model) {
+        List<Appointment> appointments = appointmentService.getAllAppointments();
+        model.addAttribute("appointments", appointments);
+        return "appointment-list";
+    }
+
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("appointment", new Appointment());
+        return "appointment-form";
+    }
+
+    @PostMapping("/save")
+    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment) {
+        appointmentService.addAppointment(appointment);
+        return "redirect:/appointments/list";
+    }
+
+    // Add more mappings for update, delete, and view single appointment
+}
+
+WEB-INF/views/appointment-list.jsp
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment List</title>
+</head>
+<body>
+    <h2>Appointment List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Appointment Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="\${appointments}" var="appointment">
+                <tr>
+                    <td>\${appointment.id}</td>
+                    <td>\${appointment.patientName}</td>
+                    <td>\${appointment.doctorName}</td>
+                    <td>\${appointment.appointmentTime}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    <br>
+    <a href="\${pageContext.request.contextPath}/appointments/add">Add New Appointment</a>
+</body>
+</html>
+
+WEB-INF/views/appointment-form.jsp
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Appointment</title>
+</head>
+<body>
+    <h2>Add Appointment</h2>
+    <form action="\${pageContext.request.contextPath}/appointments/save" method="post">
+        <label>Patient Name:</label>
+        <input type="text" name="patientName" required>
+        <br><br>
+        <label>Doctor Name:</label>
+        <input type="text" name="doctorName" required>
+        <br><br>
+        <label>Appointment Time:</label>
+        <input type="datetime-local" name="appointmentTime" required>
+        <br><br>
+        <input type="submit" value="Save">
+    </form>
+    <br>
+    <a href="\${pageContext.request.contextPath}/appointments/list">Back to Appointment List</a>
+</body>
+</html>
+            `,
+    },
+    DAA : {
+        Practical1:`
+1 Basics: Find out Big - Oh and Big–Omega of the function. Take necessary data like degree of the function, coefficients, etc.
+
+C++ Implementation:
+
+#include <iostream>
+using namespace std;
+
+// Function to demonstrate time complexity analysis
+void exampleFunction(int n) {
+    // Outer loop runs from 1 to n
+    for (int i = 1; i <= n; i++) {
+        // Inner loop runs from 1 to n
+        for (int j = 1; j <= n; j++) {
+            cout << i << " " << j << endl;
+        }
+    }
+}
+
+int main() {
+    int n = 5; // Example input size
+    exampleFunction(n); // Call the function with input size n
+    return 0;
+}
+
+Java Implementation:
+
+public class Example {
+
+    // Function to demonstrate time complexity analysis
+    public static void exampleFunction(int n) {
+        // Outer loop runs from 1 to n
+        for (int i = 1; i <= n; i++) {
+            // Inner loop runs from 1 to n
+            for (int j = 1; j <= n; j++) {
+                System.out.println(i + " " + j);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Example input size
+        exampleFunction(n); // Call the function with input size n
+    }
+}
+
+        `,
+        Practical2:`
+2 Revision of Data Structures:
+    Write a program to implement:
+    a. A Queue
+    b. A Stack
+    c. A Queue using two Stacks
+    d. A Stack using two Queues
+
+C++ Implementations
+
+a. Queue Implementation in C++
+
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+class Queue {
+private:
+    queue<int> q;
+
+public:
+    void enqueue(int item) {
+        q.push(item);
+    }
+
+    int dequeue() {
+        if (!q.empty()) {
+            int front = q.front();
+            q.pop();
+            return front;
+        }
+        return -1; // or handle empty queue case
+    }
+
+    bool isEmpty() {
+        return q.empty();
+    }
+
+    int size() {
+        return q.size();
+    }
+
+    int peek() {
+        if (!q.empty()) {
+            return q.front();
+        }
+        return -1; // or handle empty queue case
+    }
+};
+
+b. Stack Implementation in C++
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+class Stack {
+private:
+    stack<int> s;
+
+public:
+    void push(int item) {
+        s.push(item);
+    }
+
+    int pop() {
+        if (!s.empty()) {
+            int top = s.top();
+            s.pop();
+            return top;
+        }
+        return -1; // or handle empty stack case
+    }
+
+    bool isEmpty() {
+        return s.empty();
+    }
+
+    int size() {
+        return s.size();
+    }
+
+    int peek() {
+        if (!s.empty()) {
+            return s.top();
+        }
+        return -1; // or handle empty stack case
+    }
+};
+
+c. Queue using Two Stacks Implementation in C++
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+class QueueUsingStacks {
+private:
+    stack<int> s1; // For enqueue
+    stack<int> s2; // For dequeue
+
+public:
+    void enqueue(int item) {
+        s1.push(item);
+    }
+
+    int dequeue() {
+        if (s2.empty()) {
+            while (!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+
+        if (!s2.empty()) {
+            int front = s2.top();
+            s2.pop();
+            return front;
+        }
+
+        return -1; // or handle empty queue case
+    }
+
+    bool isEmpty() {
+        return s1.empty() && s2.empty();
+    }
+
+    int size() {
+        return s1.size() + s2.size();
+    }
+
+    int peek() {
+        if (s2.empty()) {
+            while (!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+
+        if (!s2.empty()) {
+            return s2.top();
+        }
+
+        return -1; // or handle empty queue case
+    }
+};
+
+d. Stack using Two Queues Implementation in C++
+
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+class StackUsingQueues {
+private:
+    queue<int> q1; // For push
+    queue<int> q2; // For pop
+
+public:
+    void push(int item) {
+        q1.push(item);
+    }
+
+    int pop() {
+        if (q1.empty()) {
+            return -1; // or handle empty stack case
+        }
+
+        while (q1.size() > 1) {
+            q2.push(q1.front());
+            q1.pop();
+        }
+
+        int top = q1.front();
+        q1.pop();
+
+        // Swap q1 and q2
+        swap(q1, q2);
+
+        return top;
+    }
+
+    bool isEmpty() {
+        return q1.empty();
+    }
+
+    int size() {
+        return q1.size();
+    }
+
+    int peek() {
+        if (q1.empty()) {
+            return -1; // or handle empty stack case
+        }
+
+        while (q1.size() > 1) {
+            q2.push(q1.front());
+            q1.pop();
+        }
+
+        int top = q1.front();
+
+        // Move top element to q2
+        q2.push(q1.front());
+        q1.pop();
+
+        // Swap q1 and q2
+        swap(q1, q2);
+
+        return top;
+    }
+};
+
+Java Implementations
+
+a. Queue Implementation in Java
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Queue {
+    private Queue<Integer> q;
+
+    public Queue() {
+        q = new LinkedList<>();
+    }
+
+    public void enqueue(int item) {
+        q.add(item);
+    }
+
+    public int dequeue() {
+        if (!q.isEmpty()) {
+            return q.remove();
+        }
+        return -1; // or handle empty queue case
+    }
+
+    public boolean isEmpty() {
+        return q.isEmpty();
+    }
+
+    public int size() {
+        return q.size();
+    }
+
+    public int peek() {
+        if (!q.isEmpty()) {
+            return q.peek();
+        }
+        return -1; // or handle empty queue case
+    }
+}
+
+b. Stack Implementation in Java
+
+import java.util.Stack;
+
+class Stack {
+    private Stack<Integer> s;
+
+    public Stack() {
+        s = new Stack<>();
+    }
+
+    public void push(int item) {
+        s.push(item);
+    }
+
+    public int pop() {
+        if (!s.isEmpty()) {
+            return s.pop();
+        }
+        return -1; // or handle empty stack case
+    }
+
+    public boolean isEmpty() {
+        return s.isEmpty();
+    }
+
+    public int size() {
+        return s.size();
+    }
+
+    public int peek() {
+        if (!s.isEmpty()) {
+            return s.peek();
+        }
+        return -1; // or handle empty stack case
+    }
+}
+
+c. Queue using Two Stacks Implementation in Java
+
+import java.util.Stack;
+
+class QueueUsingStacks {
+    private Stack<Integer> s1; // For enqueue
+    private Stack<Integer> s2; // For dequeue
+
+    public QueueUsingStacks() {
+        s1 = new Stack<>();
+        s2 = new Stack<>();
+    }
+
+    public void enqueue(int item) {
+        s1.push(item);
+    }
+
+    public int dequeue() {
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+        }
+
+        if (!s2.isEmpty()) {
+            return s2.pop();
+        }
+
+        return -1; // or handle empty queue case
+    }
+
+    public boolean isEmpty() {
+        return s1.isEmpty() && s2.isEmpty();
+    }
+
+    public int size() {
+        return s1.size() + s2.size();
+    }
+
+    public int peek() {
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+        }
+
+        if (!s2.isEmpty()) {
+            return s2.peek();
+        }
+
+        return -1; // or handle empty queue case
+    }
+}
+
+d. Stack using Two Queues Implementation in Java
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class StackUsingQueues {
+    private Queue<Integer> q1; // For push
+    private Queue<Integer> q2; // For pop
+
+    public StackUsingQueues() {
+        q1 = new LinkedList<>();
+        q2 = new LinkedList<>();
+    }
+
+    public void push(int item) {
+        q1.add(item);
+    }
+
+    public int pop() {
+        if (q1.isEmpty()) {
+            return -1; // or handle empty stack case
+        }
+
+        while (q1.size() > 1) {
+            q2.add(q1.remove());
+        }
+
+        int top = q1.remove();
+
+        // Swap q1 and q2
+        Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
+
+        return top;
+    }
+
+    public boolean isEmpty() {
+        return q1.isEmpty();
+    }
+
+    public int size() {
+        return q1.size();
+    }
+
+    public int peek() {
+        if (q1.isEmpty()) {
+            return -1; // or handle empty stack case
+        }
+
+        while (q1.size() > 1) {
+            q2.add(q1.remove());
+        }
+
+        int top = q1.remove();
+        q2.add(top);
+
+        // Swap q1 and q2
+        Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
+
+        return top;
+    }
+}
+        `,
+        Practical3:`
+3 Some Basic Algorithms:
+    Write an algorithm and find the efficiency of the same for following problems:
+    a. Finding Factorial – Iterative Approach
+    b. Finding Factorial – Recursive Approach
+    c. Printing Fibonacci Series – Iterative Approach
+    d. Printing Fibonacci Series – Recursive Approach
+
+a. Finding Factorial – Iterative Approach
+
+C++ Implementation:
+
+#include <iostream>
+
+using namespace std;
+
+long long factorialIterative(int n) {
+    long long fact = 1;
+    for (int i = 1; i <= n; ++i) {
+        fact *= i;
+    }
+    return fact;
+}
+
+int main() {
+    int n = 5; // Example value for factorial calculation
+    long long result = factorialIterative(n);
+    cout << "Factorial of " << n << " is: " << result << endl;
+    return 0;
+}
+
+Java Implementation:
+
+public class Factorial {
+    public static long factorialIterative(int n) {
+        long fact = 1;
+        for (int i = 1; i <= n; ++i) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Example value for factorial calculation
+        long result = factorialIterative(n);
+        System.out.println("Factorial of " + n + " is: " + result);
+    }
+}
+
+b. Finding Factorial – Recursive Approach
+
+C++ Implementation:
+
+#include <iostream>
+
+using namespace std;
+
+long long factorialRecursive(int n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorialRecursive(n - 1);
+}
+
+int main() {
+    int n = 5; // Example value for factorial calculation
+    long long result = factorialRecursive(n);
+    cout << "Factorial of " << n << " is: " << result << endl;
+    return 0;
+}
+
+Java Implementation:
+
+public class Factorial {
+    public static long factorialRecursive(int n) {
+        if (n <= 1) {
+            return 1;
+        }
+        return n * factorialRecursive(n - 1);
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Example value for factorial calculation
+        long result = factorialRecursive(n);
+        System.out.println("Factorial of " + n + " is: " + result);
+    }
+}
+
+c. Printing Fibonacci Series – Iterative Approach
+
+C++ Implementation:
+
+#include <iostream>
+
+using namespace std;
+
+void fibonacciIterative(int n) {
+    int a = 0, b = 1;
+    cout << "Fibonacci Series up to " << n << " terms:" << endl;
+    for (int i = 0; i < n; ++i) {
+        cout << a << " ";
+        int next = a + b;
+        a = b;
+        b = next;
+    }
+    cout << endl;
+}
+
+int main() {
+    int n = 10; // Example number of Fibonacci terms to print
+    fibonacciIterative(n);
+    return 0;
+}
+
+Java Implementation:
+
+public class Fibonacci {
+    public static void fibonacciIterative(int n) {
+        int a = 0, b = 1;
+        System.out.println("Fibonacci Series up to " + n + " terms:");
+        for (int i = 0; i < n; ++i) {
+            System.out.print(a + " ");
+            int next = a + b;
+            a = b;
+            b = next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int n = 10; // Example number of Fibonacci terms to print
+        fibonacciIterative(n);
+    }
+}
+
+d. Printing Fibonacci Series – Recursive Approach
+
+C++ Implementation:
+
+#include <iostream>
+
+using namespace std;
+
+int fibonacciRecursive(int n) {
+    if (n <= 1) {
+        return n;
+    }
+    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+}
+
+void printFibonacci(int n) {
+    cout << "Fibonacci Series up to " << n << " terms:" << endl;
+    for (int i = 0; i < n; ++i) {
+        cout << fibonacciRecursive(i) << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int n = 10; // Example number of Fibonacci terms to print
+    printFibonacci(n);
+    return 0;
+}
+
+Java Implementation:
+
+public class Fibonacci {
+    public static int fibonacciRecursive(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    }
+
+    public static void printFibonacci(int n) {
+        System.out.println("Fibonacci Series up to " + n + " terms:");
+        for (int i = 0; i < n; ++i) {
+            System.out.print(fibonacciRecursive(i) + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int n = 10; // Example number of Fibonacci terms to print
+        printFibonacci(n);
+    }
+}
+        `,
+        Practical4:`
+4 Basic Sorting and Searching Techniques:
+    Design an algorithm and implement a program for:
+    a. Insertion Sort
+    b. Selection Sort
+    c. Linear Search
+    d. Radix Sort
+
+a. Insertion Sort
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    vector<int> arr = {12, 11, 13, 5, 6};
+    insertionSort(arr);
+    cout << "Sorted array using Insertion Sort: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.Arrays;
+
+public class InsertionSort {
+    public static void insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, 11, 13, 5, 6};
+        insertionSort(arr);
+        System.out.print("Sorted array using Insertion Sort: ");
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+b. Selection Sort
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; ++i) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        swap(arr[i], arr[minIndex]);
+    }
+}
+
+int main() {
+    vector<int> arr = {64, 25, 12, 22, 11};
+    selectionSort(arr);
+    cout << "Sorted array using Selection Sort: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.Arrays;
+
+public class SelectionSort {
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; ++i) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; ++j) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 25, 12, 22, 11};
+        selectionSort(arr);
+        System.out.print("Sorted array using Selection Sort: ");
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+c. Linear Search
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int linearSearch(vector<int>& arr, int key) {
+    int n = arr.size();
+    for (int i = 0; i < n; ++i) {
+        if (arr[i] == key) {
+            return i; // Return index if found
+        }
+    }
+    return -1; // Return -1 if key not found
+}
+
+int main() {
+    vector<int> arr = {10, 20, 30, 40, 50};
+    int key = 30;
+    int index = linearSearch(arr, key);
+    if (index != -1) {
+        cout << "Element found at index: " << index << endl;
+    } else {
+        cout << "Element not found" << endl;
+    }
+    return 0;
+}
+
+Java Implementation:
+
+public class LinearSearch {
+    public static int linearSearch(int[] arr, int key) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i) {
+            if (arr[i] == key) {
+                return i; // Return index if found
+            }
+        }
+        return -1; // Return -1 if key not found
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        int key = 30;
+        int index = linearSearch(arr, key);
+        if (index != -1) {
+            System.out.println("Element found at index: " + index);
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}
+
+d. Radix Sort
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Function to find the maximum element in arr[]
+int getMax(vector<int>& arr) {
+    int max = arr[0];
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+// Function to perform counting sort based on digit represented by exp
+void countingSort(vector<int>& arr, int exp) {
+    int n = arr.size();
+    vector<int> output(n);
+    vector<int> count(10, 0);
+
+    // Store count of occurrences in count[]
+    for (int i = 0; i < n; ++i) {
+        count[(arr[i] / exp) % 10]++;
+    }
+
+    // Change count[i] so that count[i] now contains actual position of this digit in output[]
+    for (int i = 1; i < 10; ++i) {
+        count[i] += count[i - 1];
+    }
+
+    // Build the output array
+    for (int i = n - 1; i >= 0; --i) {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
+    }
+
+    // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+    for (int i = 0; i < n; ++i) {
+        arr[i] = output[i];
+    }
+}
+
+// Function to perform Radix Sort
+void radixSort(vector<int>& arr) {
+    int max = getMax(arr);
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSort(arr, exp);
+    }
+}
+
+int main() {
+    vector<int> arr = {170, 45, 75, 90, 802, 24, 2, 66};
+    radixSort(arr);
+    cout << "Sorted array using Radix Sort: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.Arrays;
+
+public class RadixSort {
+    // Function to find the maximum element in arr[]
+    static int getMax(int[] arr) {
+        int max = arr[0];
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    // Function to perform counting sort based on digit represented by exp
+    static void countingSort(int[] arr, int exp) {
+        int n = arr.length;
+        int[] output = new int[n];
+        int[] count = new int[10];
+
+        // Store count of occurrences in count[]
+        for (int i = 0; i < n; ++i) {
+            count[(arr[i] / exp) % 10]++;
+        }
+
+        // Change count[i] so that count[i] now contains actual position of this digit in output[]
+        for (int i = 1; i < 10; ++i) {
+            count[i] += count[i - 1];
+        }
+
+        // Build the output array
+        for (int i = n - 1; i >= 0; --i) {
+            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+            count[(arr[i] / exp) % 10]--;
+        }
+
+        // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+        System.arraycopy(output, 0, arr, 0, n);
+    }
+
+    // Function to perform Radix Sort
+    static void radixSort(int[] arr) {
+        int max = getMax(arr);
+        for (int exp = 1; max / exp > 0; exp *= 10) {
+            countingSort(arr, exp);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {170, 45, 75, 90, 802, 24, 2, 66};
+        radixSort(arr);
+        System.out.print("Sorted array using Radix Sort: ");
+        System.out.println(Arrays.toString(arr));
+    }
+}
+        `,
+        Practical5:`
+5 Divide and Conquer Approach:
+    Design an algorithm and implement a program for:
+    a. Quick Sort
+    b. Binary Search
+
+a. Quick Sort
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Function to partition the array using the last element as pivot
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high]; // pivot
+    int i = low - 1; // Index of smaller element
+
+    for (int j = low; j < high; ++j) {
+        // If current element is smaller than or equal to pivot
+        if (arr[j] <= pivot) {
+            ++i; // increment index of smaller element
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+// Function to implement QuickSort
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        // pi is partitioning index, arr[pi] is now at right place
+        int pi = partition(arr, low, high);
+
+        // Separately sort elements before partition and after partition
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> arr = {10, 7, 8, 9, 1, 5};
+    int n = arr.size();
+
+    quickSort(arr, 0, n - 1);
+
+    cout << "Sorted array using Quick Sort: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.Arrays;
+
+public class QuickSort {
+    // Function to partition the array using the last element as pivot
+    static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high]; // pivot
+        int i = low - 1; // Index of smaller element
+
+        for (int j = low; j < high; ++j) {
+            // If current element is smaller than or equal to pivot
+            if (arr[j] <= pivot) {
+                ++i; // increment index of smaller element
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        // swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        return i + 1;
+    }
+
+    // Function to implement QuickSort
+    static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // pi is partitioning index, arr[pi] is now at right place
+            int pi = partition(arr, low, high);
+
+            // Separately sort elements before partition and after partition
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {10, 7, 8, 9, 1, 5};
+        int n = arr.length;
+
+        quickSort(arr, 0, n - 1);
+
+        System.out.print("Sorted array using Quick Sort: ");
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+b. Binary Search
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Function to perform binary search on sorted array
+int binarySearch(vector<int>& arr, int key) {
+    int low = 0;
+    int high = arr.size() - 1;
+    
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        
+        // Check if key is present at mid
+        if (arr[mid] == key) {
+            return mid;
+        }
+        
+        // If key greater, ignore left half
+        if (arr[mid] < key) {
+            low = mid + 1;
+        }
+        // If key is smaller, ignore right half
+        else {
+            high = mid - 1;
+        }
+    }
+    
+    // Key not found in array
+    return -1;
+}
+
+int main() {
+    vector<int> arr = {2, 3, 4, 10, 40};
+    int key = 10;
+    int index = binarySearch(arr, key);
+    if (index != -1) {
+        cout << "Element found at index: " << index << endl;
+    } else {
+        cout << "Element not found" << endl;
+    }
+    return 0;
+}
+
+Java Implementation:
+
+public class BinarySearch {
+    // Function to perform binary search on sorted array
+    static int binarySearch(int[] arr, int key) {
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            // Check if key is present at mid
+            if (arr[mid] == key) {
+                return mid;
+            }
+
+            // If key greater, ignore left half
+            if (arr[mid] < key) {
+                low = mid + 1;
+            }
+            // If key is smaller, ignore right half
+            else {
+                high = mid - 1;
+            }
+        }
+
+        // Key not found in array
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 3, 4, 10, 40};
+        int key = 10;
+        int index = binarySearch(arr, key);
+        if (index != -1) {
+            System.out.println("Element found at index: " + index);
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}
+        `,
+        Practical6:`
+6 Greedy Approach:
+    Design an algorithm and implement a program to solve:
+    a. Making Change Problem
+    b. Knapsack Problem
+
+a. Making Change Problem
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> makeChange(int amount, vector<int>& denominations) {
+    sort(denominations.rbegin(), denominations.rend()); // Sort in descending order
+    vector<int> result;
+
+    for (int i = 0; i < denominations.size(); ++i) {
+        while (amount >= denominations[i]) {
+            result.push_back(denominations[i]);
+            amount -= denominations[i];
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    vector<int> denominations = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
+    int amount = 93;
+
+    vector<int> coins = makeChange(amount, denominations);
+
+    cout << "Minimum coins needed: " << coins.size() << endl;
+    cout << "Coins used: ";
+    for (int coin : coins) {
+        cout << coin << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class MakingChange {
+    public static ArrayList<Integer> makeChange(int amount, ArrayList<Integer> denominations) {
+        Collections.sort(denominations, Collections.reverseOrder()); // Sort in descending order
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < denominations.size(); ++i) {
+            while (amount >= denominations.get(i)) {
+                result.add(denominations.get(i));
+                amount -= denominations.get(i);
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> denominations = new ArrayList<>();
+        Collections.addAll(denominations, 1, 2, 5, 10, 20, 50, 100, 500, 1000);
+        int amount = 93;
+
+        ArrayList<Integer> coins = makeChange(amount, denominations);
+
+        System.out.println("Minimum coins needed: " + coins.size());
+        System.out.print("Coins used: ");
+        for (int coin : coins) {
+            System.out.print(coin + " ");
+        }
+        System.out.println();
+    }
+}
+
+b. Knapsack Problem
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Item {
+    int value;
+    int weight;
+    double ratio; // value-to-weight ratio
+};
+
+bool compare(Item a, Item b) {
+    return a.ratio > b.ratio; // Sort in descending order of ratio
+}
+
+double knapsack(int capacity, vector<Item>& items) {
+    sort(items.begin(), items.end(), compare); // Sort items by ratio
+
+    double totalValue = 0.0;
+    int currentWeight = 0;
+
+    for (int i = 0; i < items.size(); ++i) {
+        if (currentWeight + items[i].weight <= capacity) {
+            totalValue += items[i].value;
+            currentWeight += items[i].weight;
+        } else {
+            int remainingCapacity = capacity - currentWeight;
+            totalValue += items[i].value * ((double) remainingCapacity / items[i].weight);
+            break;
+        }
+    }
+
+    return totalValue;
+}
+
+int main() {
+    vector<Item> items = {{60, 10}, {100, 20}, {120, 30}};
+    int capacity = 50;
+
+    double maxValue = knapsack(capacity, items);
+
+    cout << "Maximum value in knapsack: " << maxValue << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class KnapsackProblem {
+    static class Item {
+        int value;
+        int weight;
+        double ratio; // value-to-weight ratio
+
+        Item(int value, int weight) {
+            this.value = value;
+            this.weight = weight;
+            this.ratio = (double) value / weight;
+        }
+    }
+
+    static double knapsack(int capacity, ArrayList<Item> items) {
+        items.sort(Comparator.comparingDouble((Item i) -> i.ratio).reversed()); // Sort items by ratio
+
+        double totalValue = 0.0;
+        int currentWeight = 0;
+
+        for (Item item : items) {
+            if (currentWeight + item.weight <= capacity) {
+                totalValue += item.value;
+                currentWeight += item.weight;
+            } else {
+                int remainingCapacity = capacity - currentWeight;
+                totalValue += item.value * ((double) remainingCapacity / item.weight);
+                break;
+            }
+        }
+
+        return totalValue;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(new Item(60, 10));
+        items.add(new Item(100, 20));
+        items.add(new Item(120, 30));
+        int capacity = 50;
+
+        double maxValue = knapsack(capacity, items);
+
+        System.out.println("Maximum value in knapsack: " + maxValue);
+    }
+}
+        `,
+        Practical7:`
+7 Dynamic Programming:
+    Design an algorithm and implement a program to solve:
+    a. Knapsack Problem
+    b. Longest Common Subsequence Problem
+    c. Finding Optimal Matrix Chain Order Problem
+
+a. Knapsack Problem
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int knapsack(int W, vector<int>& weights, vector<int>& values, int n) {
+    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
+
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= W; ++j) {
+            if (weights[i - 1] <= j) {
+                dp[i][j] = max(dp[i - 1][j], values[i - 1] + dp[i - 1][j - weights[i - 1]]);
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+
+    return dp[n][W];
+}
+
+int main() {
+    vector<int> values = {60, 100, 120};
+    vector<int> weights = {10, 20, 30};
+    int W = 50;
+    int n = values.size();
+
+    int maxValue = knapsack(W, weights, values, n);
+
+    cout << "Maximum value in knapsack: " << maxValue << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+public class KnapsackProblem {
+    static int knapsack(int W, int[] weights, int[] values, int n) {
+        int[][] dp = new int[n + 1][W + 1];
+
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= W; ++j) {
+                if (weights[i - 1] <= j) {
+                    dp[i][j] = Math.max(dp[i - 1][j], values[i - 1] + dp[i - 1][j - weights[i - 1]]);
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        return dp[n][W];
+    }
+
+    public static void main(String[] args) {
+        int[] values = {60, 100, 120};
+        int[] weights = {10, 20, 30};
+        int W = 50;
+        int n = values.length;
+
+        int maxValue = knapsack(W, weights, values, n);
+
+        System.out.println("Maximum value in knapsack: " + maxValue);
+    }
+}
+
+b. Longest Common Subsequence Problem
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int longestCommonSubsequence(string X, string Y) {
+    int m = X.length();
+    int n = Y.length();
+    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+
+    for (int i = 1; i <= m; ++i) {
+        for (int j = 1; j <= n; ++j) {
+            if (X[i - 1] == Y[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string X = "ABCBDAB";
+    string Y = "BDCAB";
+
+    int lengthOfLCS = longestCommonSubsequence(X, Y);
+
+    cout << "Length of Longest Common Subsequence: " << lengthOfLCS << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+public class LongestCommonSubsequence {
+    static int longestCommonSubsequence(String X, String Y) {
+        int m = X.length();
+        int n = Y.length();
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (X.charAt(i - 1) == Y.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+
+    public static void main(String[] args) {
+        String X = "ABCBDAB";
+        String Y = "BDCAB";
+
+        int lengthOfLCS = longestCommonSubsequence(X, Y);
+
+        System.out.println("Length of Longest Common Subsequence: " + lengthOfLCS);
+    }
+}
+
+c. Finding Optimal Matrix Chain Order Problem
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+int matrixChainOrder(vector<int>& dims) {
+    int n = dims.size() - 1; // Number of matrices
+    vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+
+    for (int len = 2; len <= n; ++len) {
+        for (int i = 1; i <= n - len + 1; ++i) {
+            int j = i + len - 1;
+            dp[i][j] = INT_MAX;
+            for (int k = i; k < j; ++k) {
+                int cost = dp[i][k] + dp[k + 1][j] + dims[i - 1] * dims[k] * dims[j];
+                if (cost < dp[i][j]) {
+                    dp[i][j] = cost;
+                }
+            }
+        }
+    }
+
+    return dp[1][n];
+}
+
+int main() {
+    vector<int> dims = {10, 30, 5, 60};
+    int minOperations = matrixChainOrder(dims);
+
+    cout << "Minimum number of scalar multiplications: " << minOperations << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+public class MatrixChainOrder {
+    static int matrixChainOrder(int[] dims) {
+        int n = dims.length - 1; // Number of matrices
+        int[][] dp = new int[n + 1][n + 1];
+
+        for (int len = 2; len <= n; ++len) {
+            for (int i = 1; i <= n - len + 1; ++i) {
+                int j = i + len - 1;
+                dp[i][j] = Integer.MAX_VALUE;
+                for (int k = i; k < j; ++k) {
+                    int cost = dp[i][k] + dp[k + 1][j] + dims[i - 1] * dims[k] * dims[j];
+                    if (cost < dp[i][j]) {
+                        dp[i][j] = cost;
+                    }
+                }
+            }
+        }
+
+        return dp[1][n];
+    }
+
+    public static void main(String[] args) {
+        int[] dims = {10, 30, 5, 60};
+        int minOperations = matrixChainOrder(dims);
+
+        System.out.println("Minimum number of scalar multiplications: " + minOperations);
+    }
+}
+        `,
+        Practical8:`
+8 Graph Algorithms:
+    Design an algorithm and write a program to implement:
+    a. Depth First Search of a graph
+    b. Breadth First Search of a graph
+
+a. Depth First Search (DFS) of a Graph
+
+C++ Implementation:
+
+#include <iostream>
+#include <list>
+#include <vector>
+
+using namespace std;
+
+class Graph {
+    int V; // Number of vertices
+    vector<list<int>> adj; // Adjacency list
+
+    void DFSUtil(int v, vector<bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for (int neighbor : adj[v]) {
+            if (!visited[neighbor]) {
+                DFSUtil(neighbor, visited);
+            }
+        }
+    }
+
+public:
+    Graph(int V) {
+        this->V = V;
+        adj.resize(V);
+    }
+
+    void addEdge(int v, int w) {
+        adj[v].push_back(w); // Add w to v's list
+    }
+
+    void DFS(int start) {
+        vector<bool> visited(V, false);
+        DFSUtil(start, visited);
+    }
+};
+
+int main() {
+    Graph g(4); // Graph with 4 vertices
+
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+    g.addEdge(3, 3);
+
+    cout << "Depth First Traversal (starting from vertex 2): ";
+    g.DFS(2);
+    cout << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Graph {
+    private int V; // Number of vertices
+    private List<List<Integer>> adj; // Adjacency list
+
+    public Graph(int V) {
+        this.V = V;
+        adj = new ArrayList<>(V);
+        for (int i = 0; i < V; ++i) {
+            adj.add(new LinkedList<>());
+        }
+    }
+
+    public void addEdge(int v, int w) {
+        adj.get(v).add(w); // Add w to v's list
+    }
+
+    private void DFSUtil(int v, boolean[] visited) {
+        visited[v] = true;
+        System.out.print(v + " ");
+
+        for (int neighbor : adj.get(v)) {
+            if (!visited[neighbor]) {
+                DFSUtil(neighbor, visited);
+            }
+        }
+    }
+
+    public void DFS(int start) {
+        boolean[] visited = new boolean[V];
+        DFSUtil(start, visited);
+    }
+
+    public static void main(String[] args) {
+        Graph g = new Graph(4); // Graph with 4 vertices
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        System.out.print("Depth First Traversal (starting from vertex 2): ");
+        g.DFS(2);
+        System.out.println();
+    }
+}
+
+b. Breadth First Search (BFS) of a Graph
+
+C++ Implementation:
+
+#include <iostream>
+#include <list>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+class Graph {
+    int V; // Number of vertices
+    vector<list<int>> adj; // Adjacency list
+
+public:
+    Graph(int V) {
+        this->V = V;
+        adj.resize(V);
+    }
+
+    void addEdge(int v, int w) {
+        adj[v].push_back(w); // Add w to v's list
+    }
+
+    void BFS(int start) {
+        vector<bool> visited(V, false);
+        queue<int> queue;
+
+        visited[start] = true;
+        queue.push(start);
+
+        while (!queue.empty()) {
+            int v = queue.front();
+            cout << v << " ";
+            queue.pop();
+
+            for (int neighbor : adj[v]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            }
+        }
+    }
+};
+
+int main() {
+    Graph g(4); // Graph with 4 vertices
+
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+    g.addEdge(3, 3);
+
+    cout << "Breadth First Traversal (starting from vertex 2): ";
+    g.BFS(2);
+    cout << endl;
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Graph {
+    private int V; // Number of vertices
+    private List<List<Integer>> adj; // Adjacency list
+
+    public Graph(int V) {
+        this.V = V;
+        adj = new ArrayList<>(V);
+        for (int i = 0; i < V; ++i) {
+            adj.add(new LinkedList<>());
+        }
+    }
+
+    public void addEdge(int v, int w) {
+        adj.get(v).add(w); // Add w to v's list
+    }
+
+    public void BFS(int start) {
+        boolean[] visited = new boolean[V];
+        Queue<Integer> queue = new LinkedList<>();
+
+        visited[start] = true;
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            System.out.print(v + " ");
+
+            for (int neighbor : adj.get(v)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph g = new Graph(4); // Graph with 4 vertices
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        System.out.print("Breadth First Traversal (starting from vertex 2): ");
+        g.BFS(2);
+        System.out.println();
+    }
+}
+        `,
+        Practical9:`
+9 Graph Algorithms:
+    Design an algorithm and implement a program for:
+    a. Kruskal’s method of finding Minimum Spanning Tree
+    b. Prim’s method of finding Minimum Spanning Tree
+
+a. Kruskal's Algorithm for Minimum Spanning Tree (MST)
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Edge {
+    int u, v, weight;
+};
+
+class Graph {
+    int V; // Number of vertices
+    vector<Edge> edges;
+
+public:
+    Graph(int V) {
+        this->V = V;
+    }
+
+    void addEdge(int u, int v, int weight) {
+        edges.push_back({u, v, weight});
+    }
+
+    // Find function of Union-Find
+    int find(vector<int>& parent, int i) {
+        if (parent[i] == -1)
+            return i;
+        return find(parent, parent[i]);
+    }
+
+    // Union function of Union-Find
+    void unionSet(vector<int>& parent, int x, int y) {
+        int rootX = find(parent, x);
+        int rootY = find(parent, y);
+        parent[rootX] = rootY;
+    }
+
+    void kruskalMST() {
+        vector<Edge> result;
+        // Sort edges by weight
+        sort(edges.begin(), edges.end(), [](Edge& a, Edge& b) {
+            return a.weight < b.weight;
+        });
+
+        vector<int> parent(V, -1);
+
+        for (Edge edge : edges) {
+            int rootU = find(parent, edge.u);
+            int rootV = find(parent, edge.v);
+
+            // If including this edge does not cause a cycle, include it in the result and Union the sets
+            if (rootU != rootV) {
+                result.push_back(edge);
+                unionSet(parent, rootU, rootV);
+            }
+        }
+
+        // Print the result MST
+        cout << "Edges in Minimum Spanning Tree (Kruskal's):" << endl;
+        for (Edge edge : result) {
+            cout << edge.u << " - " << edge.v << " : " << edge.weight << endl;
+        }
+    }
+};
+
+int main() {
+    Graph g(4); // Graph with 4 vertices
+
+    g.addEdge(0, 1, 10);
+    g.addEdge(0, 2, 6);
+    g.addEdge(0, 3, 5);
+    g.addEdge(1, 3, 15);
+    g.addEdge(2, 3, 4);
+
+    g.kruskalMST();
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+class Edge {
+    int u, v, weight;
+
+    public Edge(int u, int v, int weight) {
+        this.u = u;
+        this.v = v;
+        this.weight = weight;
+    }
+}
+
+class Graph {
+    int V; // Number of vertices
+    List<Edge> edges;
+
+    public Graph(int V) {
+        this.V = V;
+        edges = new ArrayList<>();
+    }
+
+    public void addEdge(int u, int v, int weight) {
+        edges.add(new Edge(u, v, weight));
+    }
+
+    // Find function of Union-Find
+    private int find(int[] parent, int i) {
+        if (parent[i] == -1)
+            return i;
+        return find(parent, parent[i]);
+    }
+
+    // Union function of Union-Find
+    private void unionSet(int[] parent, int x, int y) {
+        int rootX = find(parent, x);
+        int rootY = find(parent, y);
+        parent[rootX] = rootY;
+    }
+
+    public void kruskalMST() {
+        List<Edge> result = new ArrayList<>();
+        // Sort edges by weight
+        Collections.sort(edges, Comparator.comparingInt(e -> e.weight));
+
+        int[] parent = new int[V];
+        for (int i = 0; i < V; ++i)
+            parent[i] = -1;
+
+        for (Edge edge : edges) {
+            int rootU = find(parent, edge.u);
+            int rootV = find(parent, edge.v);
+
+            // If including this edge does not cause a cycle, include it in the result and Union the sets
+            if (rootU != rootV) {
+                result.add(edge);
+                unionSet(parent, rootU, rootV);
+            }
+        }
+
+        // Print the result MST
+        System.out.println("Edges in Minimum Spanning Tree (Kruskal's):");
+        for (Edge edge : result) {
+            System.out.println(edge.u + " - " + edge.v + " : " + edge.weight);
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph g = new Graph(4); // Graph with 4 vertices
+
+        g.addEdge(0, 1, 10);
+        g.addEdge(0, 2, 6);
+        g.addEdge(0, 3, 5);
+        g.addEdge(1, 3, 15);
+        g.addEdge(2, 3, 4);
+
+        g.kruskalMST();
+    }
+}
+
+b. Prim's Algorithm for Minimum Spanning Tree (MST)
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+
+using namespace std;
+
+class Graph {
+    int V; // Number of vertices
+    vector<vector<pair<int, int>>> adj; // Adjacency list (vertex, weight)
+
+public:
+    Graph(int V) {
+        this->V = V;
+        adj.resize(V);
+    }
+
+    void addEdge(int u, int v, int weight) {
+        adj[u].push_back({v, weight});
+        adj[v].push_back({u, weight}); // Undirected graph
+    }
+
+    void primMST(int start) {
+        vector<int> key(V, numeric_limits<int>::max()); // To store weights of MST
+        vector<int> parent(V, -1); // To store parent array
+        vector<bool> inMST(V, false); // To track vertices in MST
+
+        // Priority queue to store vertices not yet in MST
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
+
+        // Start with vertex 0
+        key[start] = 0;
+        minHeap.push({0, start});
+
+        while (!minHeap.empty()) {
+            int u = minHeap.top().second;
+            minHeap.pop();
+
+            inMST[u] = true;
+
+            for (auto& neighbor : adj[u]) {
+                int v = neighbor.first;
+                int weight = neighbor.second;
+
+                if (!inMST[v] && weight < key[v]) {
+                    key[v] = weight;
+                    parent[v] = u;
+                    minHeap.push({key[v], v});
+                }
+            }
+        }
+
+        // Print the result MST
+        cout << "Edges in Minimum Spanning Tree (Prim's):" << endl;
+        for (int i = 1; i < V; ++i) {
+            cout << parent[i] << " - " << i << " : " << key[i] << endl;
+        }
+    }
+};
+
+int main() {
+    Graph g(4); // Graph with 4 vertices
+
+    g.addEdge(0, 1, 10);
+    g.addEdge(0, 2, 6);
+    g.addEdge(0, 3, 5);
+    g.addEdge(1, 3, 15);
+    g.addEdge(2, 3, 4);
+
+    g.primMST(0); // Start from vertex 0
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+class Graph {
+    private int V; // Number of vertices
+    private List<List<Edge>> adj; // Adjacency list (vertex, weight)
+
+    public Graph(int V) {
+        this.V = V;
+        adj = new ArrayList<>(V);
+        for (int i = 0; i < V; ++i) {
+            adj.add(new ArrayList<>());
+        }
+    }
+
+    public void addEdge(int u, int v, int weight) {
+        adj.get(u).add(new Edge(u, v, weight));
+        adj.get(v).add(new Edge(v, u, weight)); // Undirected graph
+    }
+
+    public void primMST(int start) {
+        int[] key = new int[V]; // To store weights of MST
+        int[] parent = new int[V]; // To store parent array
+        boolean[] inMST = new boolean[V]; // To track vertices in MST
+
+        // Priority queue to store vertices not yet in MST
+        PriorityQueue<Edge> minHeap = new PriorityQueue<>(V, (a, b) -> a.weight - b.weight);
+
+        // Start with vertex 0
+        for (int i = 0; i < V; ++i) {
+            key[i] = Integer.MAX_VALUE;
+            parent[i] = -1;
+            inMST[i] = false;
+        }
+
+        key[start] = 0;
+        minHeap.offer(new Edge(start, start, 0));
+
+        while (!minHeap.isEmpty()) {
+            Edge edge = minHeap.poll();
+            int u = edge.v;
+
+            if (inMST[u])
+                continue;
+
+            inMST[u] = true;
+
+            for (Edge neighbor : adj.get(u)) {
+                int v = neighbor.v;
+                int weight = neighbor.weight;
+
+                if (!inMST[v] && weight < key[v]) {
+                    key[v] = weight;
+                    parent[v] = u;
+                    minHeap.offer(new Edge(u, v, key[v]));
+                }
+            }
+        }
+
+        // Print the result MST
+        System.out.println("Edges in Minimum Spanning Tree (Prim's):");
+        for (int i = 1; i < V; ++i) {
+            System.out.println(parent[i] + " - " + i + " : " + key[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph g = new Graph(4); // Graph with 4 vertices
+
+        g.addEdge(0, 1, 10);
+        g.addEdge(0, 2, 6);
+        g.addEdge(0, 3, 5);
+        g.addEdge(1, 3, 15);
+        g.addEdge(2, 3, 4);
+
+        g.primMST(0); // Start from vertex 0
+    }
+
+    static class Edge {
+        int u, v, weight;
+
+        public Edge(int u, int v, int weight) {
+            this.u = u;
+            this.v = v;
+            this.weight = weight;
+        }
+    }
+}
+        `,
+        Practical10:`
+10 Design an algorithm and implement a program for The Assignment Problem in Branch and Bound
+
+C++ Implementation:
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+
+using namespace std;
+
+const int INF = numeric_limits<int>::max();
+
+class AssignmentProblem {
+private:
+    int N;
+    vector<vector<int>> cost;
+    vector<int> assignment;
+    vector<bool> visited;
+    int currentCost;
+    int bestCost;
+
+public:
+    AssignmentProblem(vector<vector<int>>& costMatrix) {
+        N = costMatrix.size();
+        cost = costMatrix;
+        assignment.resize(N);
+        visited.assign(N, false);
+        currentCost = 0;
+        bestCost = INF;
+    }
+
+    int computeCost() {
+        int totalCost = 0;
+        for (int i = 0; i < N; ++i) {
+            totalCost += cost[i][assignment[i]];
+        }
+        return totalCost;
+    }
+
+    int bound(int agent) {
+        int minCost = 0;
+        for (int i = 0; i < N; ++i) {
+            if (!visited[i]) {
+                minCost += cost[i][agent];
+            }
+        }
+        return minCost;
+    }
+
+    void branchAndBound() {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        pq.push({0, 0}); // {bound, level}
+        
+        while (!pq.empty()) {
+            int level = pq.top().second;
+            int currentBound = pq.top().first;
+            pq.pop();
+            
+            if (currentBound >= bestCost) {
+                continue; // Prune this node
+            }
+            
+            if (level == N) {
+                bestCost = min(bestCost, currentBound);
+                continue;
+            }
+            
+            for (int j = 0; j < N; ++j) {
+                if (!visited[j]) {
+                    visited[j] = true;
+                    assignment[level] = j;
+                    
+                    int currentCost = computeCost();
+                    int nodeBound = currentBound + cost[level][j];
+                    
+                    pq.push({nodeBound, level + 1});
+                    
+                    visited[j] = false;
+                    assignment[level] = -1;
+                }
+            }
+        }
+        
+        cout << "Minimum Cost of Assignment: " << bestCost << endl;
+    }
+};
+
+int main() {
+    vector<vector<int>> costMatrix = {
+        {10, 2, 6, 5},
+        {1, 15, 8, 9},
+        {8, 7, 4, 3},
+        {5, 6, 8, 2}
+    };
+
+    AssignmentProblem problem(costMatrix);
+    problem.branchAndBound();
+
+    return 0;
+}
+
+Java Implementation:
+
+import java.util.PriorityQueue;
+
+public class AssignmentProblem {
+    private int N;
+    private int[][] cost;
+    private int[] assignment;
+    private boolean[] visited;
+    private int currentCost;
+    private int bestCost;
+
+    public AssignmentProblem(int[][] costMatrix) {
+        N = costMatrix.length;
+        cost = costMatrix;
+        assignment = new int[N];
+        visited = new boolean[N];
+        currentCost = 0;
+        bestCost = Integer.MAX_VALUE;
+    }
+
+    public int computeCost() {
+        int totalCost = 0;
+        for (int i = 0; i < N; ++i) {
+            totalCost += cost[i][assignment[i]];
+        }
+        return totalCost;
+    }
+
+    public int bound(int agent) {
+        int minCost = 0;
+        for (int i = 0; i < N; ++i) {
+            if (!visited[i]) {
+                minCost += cost[i][agent];
+            }
+        }
+        return minCost;
+    }
+
+    public void branchAndBound() {
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.offer(new Node(0, 0)); // {bound, level}
+
+        while (!pq.isEmpty()) {
+            Node node = pq.poll();
+            int level = node.level;
+            int currentBound = node.bound;
+
+            if (currentBound >= bestCost) {
+                continue; // Prune this node
+            }
+
+            if (level == N) {
+                bestCost = Math.min(bestCost, currentBound);
+                continue;
+            }
+
+            for (int j = 0; j < N; ++j) {
+                if (!visited[j]) {
+                    visited[j] = true;
+                    assignment[level] = j;
+
+                    int nodeCost = cost[level][j];
+                    int nodeBound = currentBound + nodeCost;
+
+                    pq.offer(new Node(nodeBound, level + 1));
+
+                    visited[j] = false;
+                    assignment[level] = -1;
+                }
+            }
+        }
+
+        System.out.println("Minimum Cost of Assignment: " + bestCost);
+    }
+
+    public static void main(String[] args) {
+        int[][] costMatrix = {
+            {10, 2, 6, 5},
+            {1, 15, 8, 9},
+            {8, 7, 4, 3},
+            {5, 6, 8, 2}
+        };
+
+        AssignmentProblem problem = new AssignmentProblem(costMatrix);
+        problem.branchAndBound();
+    }
+
+    static class Node implements Comparable<Node> {
+        int bound;
+        int level;
+
+        public Node(int bound, int level) {
+            this.bound = bound;
+            this.level = level;
+        }
+
+        public int compareTo(Node other) {
+            return Integer.compare(this.bound, other.bound);
+        }
+    }
+}
+        `,
+    },
 };
    
 export default fileData;

@@ -132,7 +132,25 @@ function Sem4({ navigate }) {
 }
 
 function Sem5({ navigate }) {
-  return <div className="SemContent"></div>;
+  const [selectedSub, setSelectedSub] = useState(null);
+  return (
+    <div className="SemContent">
+      <div className="SubGridContainer">
+        <div className="SubGrid">
+          {/* <button onClick={() => setSelectedSub()}>POM</button> */}
+          {/* <button onClick={() => setSelectedSub()}>PSNM</button> */}
+          {/* <button onClick={() => setSelectedSub()}>COA</button> */}
+          <button onClick={() => setSelectedSub(15)}>DAA</button>
+          <button onClick={() => setSelectedSub(14)}>AJP</button>
+        </div>
+      </div>
+      {/* {selectedSub === 10 && <POM navigate={navigate} />} */}
+      {/* {selectedSub === 12 && <PSNM navigate={navigate} />} */}
+      {/* {selectedSub === 9 && <COA navigate={navigate} />} */}
+      {selectedSub === 15 && <DAA navigate={navigate} />}
+      {selectedSub === 14 && <AJP navigate={navigate} />}
+    </div>
+  );
 }
 
 function Sem6({ navigate }) {
@@ -314,6 +332,72 @@ function POM() {
             {key}
           </button>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function AJP() {
+  const [selectedPractical, setSelectedPractical] = useState("");
+  const handleButtonClick = (code) => {
+    setSelectedPractical(code);
+  };
+
+  const practicals = fileData?.AJP || {};
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [selectedPractical]);
+
+  return (
+    <div className="SubDataContainer">
+      <div className="practicals">
+        {Object.keys(practicals).map((key, index) => (
+          <button
+            key={index}
+            onClick={() => handleButtonClick(practicals[key])}
+          >
+            {key}
+          </button>
+        ))}
+      </div>
+      <div className="practical-content">
+        <pre>
+          <code className="language-java">{selectedPractical}</code>
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function DAA() {
+  const [selectedPractical, setSelectedPractical] = useState("");
+  const handleButtonClick = (code) => {
+    setSelectedPractical(code);
+  };
+
+  const practicals = fileData?.DAA || {};
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [selectedPractical]);
+
+  return (
+    <div className="SubDataContainer">
+      <div className="practicals">
+        {Object.keys(practicals).map((key, index) => (
+          <button
+            key={index}
+            onClick={() => handleButtonClick(practicals[key])}
+          >
+            {key}
+          </button>
+        ))}
+      </div>
+      <div className="practical-content">
+        <pre>
+          <code className="language-java">{selectedPractical}</code>
+        </pre>
       </div>
     </div>
   );
