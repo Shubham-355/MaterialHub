@@ -4743,7 +4743,17 @@ Total no. of page faults : 10
     POM : {
 
         assignments: {
-        "ASSIGNMENT 1": `${process.env.REACT_APP_POM_ASSIGNMENT_URL}`,        }
+        "ASSIGNMENT 1": `${process.env.REACT_APP_POM_ASSIGNMENT_URL}`,
+        }
+
+    },
+    CN : {
+
+        assignments: {
+        "ASSIGNMENT 1": `${process.env.REACT_APP_CN_ASSIGNMENT1_URL}`,        
+        "ASSIGNMENT 2": `${process.env.REACT_APP_CN_ASSIGNMENT2_URL}`,        
+        "ASSIGNMENT 3": `${process.env.REACT_APP_CN_ASSIGNMENT3_URL}`,
+        }
 
     },
     AJP : {

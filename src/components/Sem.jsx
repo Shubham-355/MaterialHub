@@ -101,10 +101,10 @@ function Sem3({ navigate }) {
     <div className="SubGridContainer">
       <div className="SubGridContainer">
         <div className="SubGrid">
-          <button onClick={() => setSelectedSub(14)}>ITW</button>
+          <button onClick={() => setSelectedSub("ITW")}>ITW</button>
         </div>
       </div>
-      {selectedSub === 14 && <ITW navigate={navigate} />}
+      {selectedSub === "ITW" && <ITW navigate={navigate} />}
     </div>
   );
 }
@@ -115,18 +115,18 @@ function Sem4({ navigate }) {
     <div className="SemContent">
       <div className="SubGridContainer">
         <div className="SubGrid">
-          <button onClick={() => setSelectedSub(10)}>POM</button>
-          <button onClick={() => setSelectedSub(12)}>PSNM</button>
-          {/* <button onClick={() => setSelectedSub(9)}>COA</button> */}
-          <button onClick={() => setSelectedSub(13)}>OS</button>
-          <button onClick={() => setSelectedSub(11)}>OOPJ</button>
+          <button onClick={() => setSelectedSub("POM")}>POM</button>
+          <button onClick={() => setSelectedSub("PSNM")}>PSNM</button>
+          {/* <button onClick={() => setSelectedSub("COA")}>COA</button> */}
+          <button onClick={() => setSelectedSub("OS")}>OS</button>
+          <button onClick={() => setSelectedSub("OOPJ")}>OOPJ</button>
         </div>
       </div>
-      {selectedSub === 10 && <POM navigate={navigate} />}
-      {selectedSub === 12 && <PSNM navigate={navigate} />}
-      {/* {selectedSub === 9 && <COA navigate={navigate} />} */}
-      {selectedSub === 13 && <OS navigate={navigate} />}
-      {selectedSub === 11 && <OOPJ navigate={navigate} />}
+      {selectedSub === "POM" && <POM navigate={navigate} />}
+      {selectedSub === "PSNM" && <PSNM navigate={navigate} />}
+      {/* {selectedSub === "COA" && <COA navigate={navigate} />} */}
+      {selectedSub === "OS" && <OS navigate={navigate} />}
+      {selectedSub === "OOPJ" && <OOPJ navigate={navigate} />}
     </div>
   );
 }
@@ -137,18 +137,14 @@ function Sem5({ navigate }) {
     <div className="SemContent">
       <div className="SubGridContainer">
         <div className="SubGrid">
-          {/* <button onClick={() => setSelectedSub()}>POM</button> */}
-          {/* <button onClick={() => setSelectedSub()}>PSNM</button> */}
-          {/* <button onClick={() => setSelectedSub()}>COA</button> */}
-          <button onClick={() => setSelectedSub(15)}>DAA</button>
-          <button onClick={() => setSelectedSub(14)}>AJP</button>
+          <button onClick={() => setSelectedSub("DAA")}>DAA</button>
+          <button onClick={() => setSelectedSub("AJP")}>AJP</button>
+          <button onClick={() => setSelectedSub("CN")}>CN</button>
         </div>
       </div>
-      {/* {selectedSub === 10 && <POM navigate={navigate} />} */}
-      {/* {selectedSub === 12 && <PSNM navigate={navigate} />} */}
-      {/* {selectedSub === 9 && <COA navigate={navigate} />} */}
-      {selectedSub === 15 && <DAA navigate={navigate} />}
-      {selectedSub === 14 && <AJP navigate={navigate} />}
+      {selectedSub === "DAA" && <DAA navigate={navigate} />}
+      {selectedSub === "AJP" && <AJP navigate={navigate} />}
+      {selectedSub === "CN" && <CN navigate={navigate} />}
     </div>
   );
 }
@@ -365,6 +361,35 @@ function AJP() {
         <pre>
           <code className="language-java">{selectedPractical}</code>
         </pre>
+      </div>
+    </div>
+  );
+}
+
+function CN() {
+  const [selectedAssignment, setSelectedAssignment] = useState(null);
+  const handleButtonClick = (code) => {
+    setSelectedPractical(code);
+  };
+
+  const handleAssignmentButtonClick = (pdfPath) => {
+    setSelectedAssignment(pdfPath);
+    window.open(pdfPath, "_blank");
+  };
+
+  const { assignments } = fileData?.CN || {};
+
+  return (
+    <div className="SubDataContainer">
+      <div className="practicals">
+        {Object.keys(assignments).map((key, index) => (
+          <button
+            key={index}
+            onClick={() => handleAssignmentButtonClick(assignments[key])}
+          >
+            {key}
+          </button>
+        ))}
       </div>
     </div>
   );
